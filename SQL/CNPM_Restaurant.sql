@@ -10,13 +10,14 @@ CREATE TABLE IF NOT EXISTS `User`(
 	`UserID` 		TINYINT AUTO_INCREMENT PRIMARY KEY,
     `Email` 		VARCHAR(35) NOT NULL UNIQUE KEY,
     `PhoneNumber`	VARCHAR(12) NOT NULL UNIQUE KEY,
-    `FullName`		VARCHAR(35) NOT NULL,
-    `PassWord`		VARCHAR(16) NOT NULL,
-    `Age`			INT NOT NULL CHECK (`Age`>16),
-    `Gender`		ENUM('Male','Female','Unknown') NOT NULL,
+    `FirstName`		VARCHAR(35) NOT NULL,
+    `LastName`		VARCHAR(15) NOT NULL,
+    `PassWord`		VARCHAR(50) NOT NULL,
+    `DateOfBirth`	DATETIME,
+    `Gender`		ENUM('Male','Female','Unknown') DEFAULT("Unknown"),
     `Address`		VARCHAR(100) NOT NULL,
     `CreatedAt`		DATETIME DEFAULT NOW(),
-    `UpdatedAat`	DATETIME DEFAULT NOW()
+    `UpdatedAt`		DATETIME DEFAULT NOW()
 );
 
 -- create table `Bill`
@@ -62,18 +63,18 @@ CREATE TABLE IF NOT EXISTS `BillDetail`(
 -- Insert Data -------------------------------
 -- Insert into table `User`
 INSERT INTO `User`
-(`Email`					,`PhoneNumber`	,`FullName`			,`PassWord`		,`Age`	,`Gender`	,`Address`					)
+(`Email`					,`PhoneNumber`	,`FirstName`	,`LastName`		,`PassWord`		,`Gender`	,`Address`					)
 VALUES
-('JohnnyDang@gmail.com'		,'0956320111'	,'Johnny Tuấn Đặng'		,'Thuhanoi123'	,45		,'Male'		,'20A ngõ 445 Nguyễn Khang, Yên Hòa, Cầu Giấy, Hà nội'),
-('TommyTeo@gmail.com'		,'0987654321'	,'Tommy Quang Tèo'		,'Anhyeuem123'	,23		,'Male'		,'20A ngõ 445 Nguyễn Khang, Yên Hòa, Cầu Giấy, Hà nội'),
-('AnNguyen@gmail.com'		,'0967299999'	,'Nguyễn Văn An'		,'Anngu102102'	,20		,'Male'		,'20A ngõ 445 Nguyễn Khang, Yên Hòa, Cầu Giấy, Hà nội'),
-('AnhTuanTran@gmail.com'	,'0956320333'	,'Trần Tuấn Anh'		,'Thuhanoi123'	,20		,'Male'		,'20A ngõ 445 Nguyễn Khang, Yên Hòa, Cầu Giấy, Hà nội'),
-('NgaNgoNgan@gmail.com'		,'0956320444'	,'Nguyễn Thị Nga'		,'Thuhanoi123'	,32		,'Female'	,'20A ngõ 445 Nguyễn Khang, Yên Hòa, Cầu Giấy, Hà nội'),
-('HungLieuViet@gmail.com'	,'0956320555'	,'Liễu Việt Hùng'		,'Thuhanoi123'	,20		,'Male'		,'20A ngõ 445 Nguyễn Khang, Yên Hòa, Cầu Giấy, Hà nội'),
-('TranDoan@gmail.com'		,'0956777888'	,'Trần Ngọc Đoàn'		,'Thuhanoi123'	,27		,'Male'		,'20A ngõ 445 Nguyễn Khang, Yên Hòa, Cầu Giấy, Hà nội'),
-('LeBao123@gmail.com'		,'0956888888'	,'Lê Ngọc Bảo'			,'Thuhanoi123'	,19		,'Male'		,'20A ngõ 445 Nguyễn Khang, Yên Hòa, Cầu Giấy, Hà nội'),
-('MrBaoBinhpro@gmail.com'	,'0956320145'	,'Lê Bảo Bình'			,'Thuhanoi123'	,45		,'Male'		,'20A ngõ 445 Nguyễn Khang, Yên Hòa, Cầu Giấy, Hà nội'),
-('TrungPhan3ke@gmail.com'	,'0964421412'	,'Phan Tấn Trung'		,'Thuhanoi123'	,45		,'Male'		,'20A ngõ 445 Nguyễn Khang, Yên Hòa, Cầu Giấy, Hà nội');
+('JohnnyDang@gmail.com'		,'0956320111'	,'Johnny' 		,'Tuấn Đặng'	,'Thuhanoi123'	,'Male'		,'20A ngõ 445 Nguyễn Khang, Yên Hòa, Cầu Giấy, Hà nội'),
+('TommyTeo@gmail.com'		,'0987654321'	,'Tommy'		, 'Quang Tèo'	,'Anhyeuem123'	,'Male'		,'20A ngõ 445 Nguyễn Khang, Yên Hòa, Cầu Giấy, Hà nội'),
+('AnNguyen@gmail.com'		,'0967299999'	,'Nguyễn Văn'	, 'An'			,'Anngu102102'	,'Male'		,'20A ngõ 445 Nguyễn Khang, Yên Hòa, Cầu Giấy, Hà nội'),
+('AnhTuanTran@gmail.com'	,'0956320333'	,'Trần Tuấn'	, 'Anh'			,'Thuhanoi123'	,'Male'		,'20A ngõ 445 Nguyễn Khang, Yên Hòa, Cầu Giấy, Hà nội'),
+('NgaNgoNgan@gmail.com'		,'0956320444'	,'Nguyễn Thị'	, 'Nga'			,'Thuhanoi123'	,'Female'	,'20A ngõ 445 Nguyễn Khang, Yên Hòa, Cầu Giấy, Hà nội'),
+('HungLieuViet@gmail.com'	,'0956320555'	,'Liễu Việt'	, ' Hùng'		,'Thuhanoi123'	,'Male'		,'20A ngõ 445 Nguyễn Khang, Yên Hòa, Cầu Giấy, Hà nội'),
+('TranDoan@gmail.com'		,'0956777888'	,'Trần Ngọc'	, 'Đoàn'		,'Thuhanoi123'	,'Male'		,'20A ngõ 445 Nguyễn Khang, Yên Hòa, Cầu Giấy, Hà nội'),
+('LeBao123@gmail.com'		,'0956888888'	,'Lê Ngọc'		, 'Bảo'			,'Thuhanoi123'	,'Male'		,'20A ngõ 445 Nguyễn Khang, Yên Hòa, Cầu Giấy, Hà nội'),
+('MrBaoBinhpro@gmail.com'	,'0956320145'	,'Lê Bảo'		,'Bình'			,'Thuhanoi123'	,'Male'		,'20A ngõ 445 Nguyễn Khang, Yên Hòa, Cầu Giấy, Hà nội'),
+('TrungPhan3ke@gmail.com'	,'0964421412'	,'Phan Tấn'		, 'Trung'		,'Thuhanoi123'	,'Male'		,'20A ngõ 445 Nguyễn Khang, Yên Hòa, Cầu Giấy, Hà nội');
 
 
 -- Insert into table `FoodCategory`
