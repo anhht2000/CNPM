@@ -1,8 +1,10 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssPlugin = require("mini-css-extract-plugin");
+const WebpackMessages = require("webpack-messages");
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: ["babel-polyfill", "./src/index.js"],
   output: {
     path: path.join(__dirname, "/build"),
     filename: "bundle.js",
@@ -10,19 +12,33 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: ["babel-loader"],
       },
       {
-        test: /\.css$/,
-        use: ["css-loader", "style-loader"],
+        test: /\.(sa|sc|c)ss$/,
+        use: ["style-loader", "css-loader", "sass-loader"],
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/,
+        type: "asset",
       },
     ],
   },
+  // devServer: {
+  //   contentBase: path.join(__dirname, "build"),
+  //   compress: true,
+  //   port: 8080,
+  // },
   plugins: [
     new HtmlWebpackPlugin({
       template: "./public/index.html",
+    }),
+    new MiniCssPlugin(),
+    new WebpackMessages({
+      name: "client",
+      logger: (str) => console.log(`>> ${str}`),
     }),
   ],
 };
