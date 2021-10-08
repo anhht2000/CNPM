@@ -26,11 +26,9 @@ module.exports = {
       },
     ],
   },
-  // devServer: {
-  //   contentBase: path.join(__dirname, "build"),
-  //   compress: true,
-  //   port: 8080,
-  // },
+  devServer: {
+    historyApiFallback: true,
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: "./public/index.html",

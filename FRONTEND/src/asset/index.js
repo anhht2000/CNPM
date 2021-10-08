@@ -13,6 +13,7 @@ import * as product5 from "./images/img-05.jpg";
 import * as product6 from "./images/img-06.jpg";
 import * as product7 from "./images/img-07.jpg";
 import * as product8 from "./images/img-08.jpg";
+import * as gallery1 from "./images/gallery-img-01.jpg";
 
 export const logoImg = {
   logo: logo.default,
@@ -30,6 +31,9 @@ export const sliderImg = {
   one: slider_one.default,
   two: slider_two.default,
   three: slider_three.default,
+};
+export const galleryImg = {
+  one: gallery1.default,
 };
 export const productImg = {
   product_one: product1.default,

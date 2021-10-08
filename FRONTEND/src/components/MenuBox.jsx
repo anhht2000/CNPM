@@ -39,7 +39,7 @@ export default function MenuBox() {
 
         <div className='row '>
           {dataProduct.map((e, index) => (
-            <div className='col-lg-4 col-md-6 special-grid lunch'>
+            <div className='col-lg-4 col-md-6 special-grid lunch' key={index}>
               <div className='gallery-single fix'>
                 <img src={e.img} className='img-fluid' alt='Image' />
                 <div className='why-text'>

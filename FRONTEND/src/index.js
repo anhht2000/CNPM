@@ -8,6 +8,8 @@ import router from "./router";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import "./sass/style.scss";
+import Login from "./pages/Login.jsx";
+import HomePage from "./pages/HomePage.jsx";
 
 function RouterApp() {
   return (

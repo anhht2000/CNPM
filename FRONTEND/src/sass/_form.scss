@@ -1,0 +1,10 @@
+.app__container {
+  border: 1px solid #ccc;
+  overflow-y: scroll;
+  .btn-floating {
+    border-radius: 50%;
+  }
+}
+::-webkit-scrollbar {
+  display: none;
+}
