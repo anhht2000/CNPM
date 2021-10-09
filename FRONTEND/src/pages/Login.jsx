@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import AuthLayout from "../layouts/authLayout.jsx";
 
 export default function Login() {
+  const [isShowPass, setIsShowPass] = useState(false);
   return (
     <AuthLayout>
       <form>
@@ -33,13 +35,28 @@ export default function Login() {
           />
         </div>
 
-        <div className='form-outline mb-3'>
+        <div className='form-outline mb-3 position-relative'>
           <input
-            type='password'
-            id='form3Example4'
+            type={isShowPass ? "text" : "password"}
+            id='form3Example5'
             className='form-control form-control-lg'
             placeholder='Enter password'
           />
+          {isShowPass ? (
+            <i
+              className='fa fa-eye-slash pass__icon'
+              onClick={() => {
+                setIsShowPass(false);
+              }}
+            />
+          ) : (
+            <i
+              className='fa fa-eye pass__icon'
+              onClick={() => {
+                setIsShowPass(true);
+              }}
+            />
+          )}
         </div>
 
         <div className='d-flex justify-content-between align-items-center'>
@@ -60,9 +77,9 @@ export default function Login() {
           </button>
           <p className='small fw-bold mt-2 pt-1 mb-0 fs-6'>
             Don't have an account?{" "}
-            <a href='#!' className='link-danger'>
+            <Link to='signup' className='link-danger'>
               Register
-            </a>
+            </Link>
           </p>
         </div>
       </form>

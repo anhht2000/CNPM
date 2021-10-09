@@ -1,24 +1,31 @@
+import "babel-polyfill";
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import store from "./redux/store";
-import "babel-polyfill";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
 import router from "./router";
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap/dist/js/bootstrap.bundle.min";
 import "./sass/style.scss";
-import Login from "./pages/Login.jsx";
-import HomePage from "./pages/HomePage.jsx";
+
+function RouteWithSubRoutes(route) {
+  return (
+    <Route
+      path={route.path}
+      render={(props) => {
+        return <route.component {...props} routes={route.routes} />;
+      }}
+    />
+  );
+}
 
 function RouterApp() {
   return (
     <BrowserRouter>
       <Switch>
-        {router.map((e, index) => (
-          <Route key={index} path={e.path} exact={e.exact}>
-            {e.component}
-          </Route>
+        {router.map((route, index) => (
+          <RouteWithSubRoutes key={index} {...route} />
         ))}
       </Switch>
     </BrowserRouter>
