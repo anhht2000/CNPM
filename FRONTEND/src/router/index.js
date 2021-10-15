@@ -11,7 +11,7 @@ const router = [
     routes: [],
   },
   {
-    path: "/login",
+    path: "/log-in",
     name: "Login Page",
     exact: false,
     component: Login,
@@ -23,7 +23,7 @@ const router = [
     ],
   },
   {
-    path: "/signup",
+    path: "/sign-up",
     name: "Signup Page",
     exact: true,
     component: Signup,
