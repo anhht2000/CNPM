@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS `User`(
     `PhoneNumber`	VARCHAR(12) NOT NULL UNIQUE KEY,
     `FirstName`		VARCHAR(35) NOT NULL,
     `LastName`		VARCHAR(15) NOT NULL,
-    `PassWord`		VARCHAR(50) NOT NULL,
+    `PassWord`		VARCHAR(200) NOT NULL,
     `DateOfBirth`	DATETIME,
     `Gender`		ENUM('Male','Female','Unknown') DEFAULT("Unknown"),
     `Address`		VARCHAR(100) NOT NULL,
@@ -45,6 +45,7 @@ CREATE TABLE IF NOT EXISTS `Food`(
     `CategoryID`    TINYINT NOT NULL,
     `FoodName` 		VARCHAR(30) NOT NULL,
     `Price`			DOUBLE NOT NULL,
+    `Image`			VARCHAR(500) NOT NULL,
     `FoodAmount`	INT NOT NULL,
     FOREIGN KEY(`CategoryID`) REFERENCES `FoodCategory`(`CategoryID`)
 );
@@ -88,15 +89,9 @@ VALUES
 
 -- Insert into table `Food`
 INSERT INTO `Food`
-(`CategoryID`	,`FoodName`					,`Price`	,`FoodAmount`)
+(`CategoryID`	,`FoodName`					,`Price`	,`Image`					,`FoodAmount`)
 VALUES
-(1				,'Heo Sữa Quay'				,1950		,10			 ),
-(2				,'Cá tai tượng chiên xù'	,1950		,8			 ),
-(3				,'Gà bó xôi'				,580		,20			 ),
-(3				,'Gà hấp nước mắm'			,549		,15			 ),
-(3				,'Gà ta hấp cách thủy'		,599		,15			 ),
-(4				,'Coca Cola'				,12			,300		 );
-
+(1				,'Heo Sữa Quay'				,1950		,`link anh`					,10			 );
 -- Test data inserted
 
 SELECT * FROM `User`;
