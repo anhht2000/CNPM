@@ -34,9 +34,11 @@ function RouterApp() {
 
 function App() {
   return (
-    <Provider store={store}>
-      <RouterApp />
-    </Provider>
+    <React.StrictMode>
+      <Provider store={store}>
+        <RouterApp />
+      </Provider>
+    </React.StrictMode>
   );
 }
 

@@ -9,7 +9,8 @@ const schema = yup.object().shape({
   email: yup.string().email("Please typing have type is email").required("Please typing your email"),
   password: yup.string().min(5, "Please typing min is 5 character").required("Please typing your password"),
   confirm: yup.string().oneOf([yup.ref("password")], "Passwords does not match"),
-  name: yup.string().required("You must typing your name").typeError("You must typing name is letter"),
+  firstname: yup.string().required("You must typing firstname").typeError("You must typing firstname is letter"),
+  lastname: yup.string().required("You must typing lastname").typeError("You must typing lastname is letter"),
   phone: yup
     .number()
     .required("You must typing phone number")
@@ -34,6 +35,7 @@ export default function Signup() {
     clearErrors(`${target.name}`);
   };
   const onSubmit = (data) => {
+    data.phone = "0"+String(data?.phone);
     console.log(data);
   };
   return (
@@ -113,16 +115,29 @@ export default function Signup() {
           <p className='text__error'>{errors.confirm?.message}</p>
         </div>
 
-        <div className='form-outline mb-3'>
-          <input
-            type='text'
-            {...register("name")}
-            defaultValue={getValues("name")}
-            onMouseDown={handleMouseDown}
-            className={errors.name ? "form-control form-control-lg form__error" : "form-control form-control-lg"}
-            placeholder='Enter your name'
-          />
-          <p className='text__error'>{errors.name?.message}</p>
+        <div className='row'>
+          <div className='form-outline mb-3 col col-6'>
+            <input
+              type='text'
+              {...register("firstname")}
+              defaultValue={getValues("firstname")}
+              onMouseDown={handleMouseDown}
+              className={errors.firstname ? "form-control form-control-lg form__error" : "form-control form-control-lg"}
+              placeholder='Last name'
+            />
+            <p className='text__error'>{errors.firstname?.message}</p>
+          </div>
+          <div className='form-outline mb-3 col col-6'>
+            <input
+              type='text'
+              {...register("lastname")}
+              defaultValue={getValues("lastname")}
+              onMouseDown={handleMouseDown}
+              className={errors.lastname ? "form-control form-control-lg form__error" : "form-control form-control-lg"}
+              placeholder='First name'
+            />
+            <p className='text__error'>{errors.lastname?.message}</p>
+          </div>
         </div>
 
         <div className='form-outline mb-3'>
@@ -154,7 +169,7 @@ export default function Signup() {
           </button>
           <p className='small fw-bold mt-2 pt-1 mb-0 fs-6'>
             You have account?{" "}
-            <Link to='/login' className='link-danger'>
+            <Link to='/log-in' className='link-danger'>
               Login
             </Link>
           </p>
