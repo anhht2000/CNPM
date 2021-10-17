@@ -108,7 +108,7 @@ export default function Login() {
           </button>
           <p className='small fw-bold mt-2 pt-1 mb-0 fs-6'>
             Don't have an account?{" "}
-            <Link to='signup' className='link-danger'>
+            <Link to='sign-up' className='link-danger'>
               Register
             </Link>
           </p>
