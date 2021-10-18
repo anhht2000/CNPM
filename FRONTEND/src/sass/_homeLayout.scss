@@ -1,3 +1,5 @@
+@import "mixin";
+
 .top-navbar {
   position: relative;
   z-index: 10;
@@ -34,7 +36,7 @@ ol {
   border-radius: 4px;
 }
 #navbars-rs-food {
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 //footer
 h1,
@@ -411,4 +413,22 @@ h6 {
     background-image: none;
     border-color: #cfa671;
   }
+}
+.icon__group {
+  i {
+    font-size: 1.1rem;
+    padding: 0 0.5rem;
+    cursor: pointer;
+  }
+  @include Responsive(MD) {
+    display: none;
+  }
+}
+.link--active {
+  background: #d0a772;
+  color: #ffffff !important;
+  border-radius: 4px;
+}
+#pt-6 {
+  padding-top: 6rem !important;
 }

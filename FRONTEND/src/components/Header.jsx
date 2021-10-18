@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import { logoImg } from "../asset";
 
 export default function Header() {
@@ -22,49 +23,20 @@ export default function Header() {
           </button>
           <div className='collapse navbar-collapse' id='navbars-rs-food'>
             <ul className='navbar-nav ml-auto'>
-              <li className='nav-item active'>
-                <a className='nav-link' href='index.html'>
+              <li className='nav-item '>
+                <NavLink to='/' activeClassName='link--active' exact className='nav-link'>
                   Home
-                </a>
+                </NavLink>
               </li>
-              <li className='nav-item'>
-                <a className='nav-link' href='menu.html'>
+              <li className='nav-item '>
+                <NavLink to='/menu' activeClassName='link--active' className='nav-link'>
                   Menu
-                </a>
+                </NavLink>
               </li>
               <li className='nav-item'>
                 <a className='nav-link' href='about.html'>
                   About
                 </a>
-              </li>
-              <li className='nav-item dropdown'>
-                <a className='nav-link dropdown-toggle' href='#' id='dropdown-a' data-toggle='dropdown'>
-                  Pages
-                </a>
-                <div className='dropdown-menu' aria-labelledby='dropdown-a'>
-                  <a className='dropdown-item' href='reservation.html'>
-                    Reservation
-                  </a>
-                  <a className='dropdown-item' href='stuff.html'>
-                    Stuff
-                  </a>
-                  <a className='dropdown-item' href='gallery.html'>
-                    Gallery
-                  </a>
-                </div>
-              </li>
-              <li className='nav-item dropdown'>
-                <a className='nav-link dropdown-toggle' href='#' id='dropdown-a' data-toggle='dropdown'>
-                  Blog
-                </a>
-                <div className='dropdown-menu' aria-labelledby='dropdown-a'>
-                  <a className='dropdown-item' href='blog.html'>
-                    blog
-                  </a>
-                  <a className='dropdown-item' href='blog-details.html'>
-                    blog Single
-                  </a>
-                </div>
               </li>
               <li className='nav-item'>
                 <a className='nav-link' href='contact.html'>
@@ -72,6 +44,10 @@ export default function Header() {
                 </a>
               </li>
             </ul>
+          </div>
+          <div className='icon__group'>
+            <i className='fa fa-search'></i>
+            <i className='fa fa-user'></i>
           </div>
         </div>
       </nav>

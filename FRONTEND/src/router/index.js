@@ -1,5 +1,6 @@
 import HomePage from "../pages/HomePage.jsx";
 import Login from "../pages/Login.jsx";
+import MenuPage from "../pages/MenuPage.jsx";
 import Signup from "../pages/Signup.jsx";
 
 const router = [
@@ -8,6 +9,13 @@ const router = [
     name: "Home Page",
     exact: true,
     component: HomePage,
+    routes: [],
+  },
+  {
+    path: "/menu",
+    name: "Menu Page",
+    exact: true,
+    component: MenuPage,
     routes: [],
   },
   {

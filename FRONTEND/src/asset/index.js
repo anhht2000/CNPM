@@ -14,6 +14,7 @@ import * as product6 from "./images/img-06.jpg";
 import * as product7 from "./images/img-07.jpg";
 import * as product8 from "./images/img-08.jpg";
 import * as gallery1 from "./images/gallery-img-01.jpg";
+import * as bannerMenu from "./images/all-bg.jpg";
 
 export const logoImg = {
   logo: logo.default,
@@ -23,6 +24,7 @@ export const footerImg = {
 };
 export const bannerImg = {
   home: bannerHome.default,
+  menu: bannerMenu.default,
 };
 export const aboutImg = {
   home: about.default,
