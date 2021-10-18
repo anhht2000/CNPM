@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function Banner({ img, content, author }) {
+export default function Banner({ img, content, author, center }) {
   return (
     <div className='qt-box qt-background' style={{ backgroundImage: `url("${img}")` }}>
-      <div className='container'>
+      <div className={center ? "container text-center" : "container"}>
         <div className='row'>
           <div className='col-md-8 ms-auto me-auto text-left'>
             <p className='lead '>{content}</p>
