@@ -1,16 +1,8 @@
-import React from "react";
-import { productImg } from "../asset";
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 
-const dataProduct = [
-  { img: productImg.product_one, name: "Special Lunch 1", price: "$15.79" },
-  { img: productImg.product_one, name: "Special Lunch 1", price: "$15.79" },
-  { img: productImg.product_one, name: "Special Lunch 1", price: "$15.79" },
-  { img: productImg.product_one, name: "Special Lunch 1", price: "$15.79" },
-  { img: productImg.product_one, name: "Special Lunch 1", price: "$15.79" },
-  { img: productImg.product_one, name: "Special Lunch 1", price: "$15.79" },
-];
-
-export default function MenuBox() {
+export default function MenuBox({ filter, foods, children }) {
+  const [currentFilter, setCurrentFilter] = useState(0);
   return (
     <div className='menu-box'>
       <div className='container'>
@@ -26,29 +18,34 @@ export default function MenuBox() {
           <div className='col-lg-12'>
             <div className='special-menu text-center'>
               <div className='button-group filter-button-group'>
-                <button className='active' data-filter='*'>
-                  All
-                </button>
-                <button className=''>Drinks</button>
-                <button className=''>Lunch</button>
-                <button>Dinner</button>
+                {filter &&
+                  filter?.map((item) => (
+                    <button key={item.id} className={currentFilter === item.id ? "active" : ""}>
+                      {item.name}
+                    </button>
+                  ))}
               </div>
             </div>
           </div>
         </div>
+        {children}
 
         <div className='row '>
-          {dataProduct.map((e, index) => (
-            <div className='col-lg-4 col-md-6 special-grid lunch' key={index}>
-              <div className='gallery-single fix'>
-                <img src={e.img} className='img-fluid' alt='Image' />
-                <div className='why-text'>
-                  <h4>{e.name}</h4>
-                  <h5>{e.price}</h5>
+          {foods &&
+            foods?.map((e, index) => (
+              <div className='col-lg-4 col-md-6 special-grid lunch' key={index}>
+                <div className='gallery-single fix'>
+                  <img src={e.img} className='img-fluid' alt='Image' />
+                  <div className='why-text'>
+                    <h4>{e.name}</h4>
+                    <h5>{e.price}</h5>
+                  </div>
+                </div>
+                <div className='icon__cart'>
+                  <i className='fa fa-shopping-cart'></i>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
       </div>
     </div>

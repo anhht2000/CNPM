@@ -15,6 +15,27 @@
   }
   .lunch {
     padding: 2rem 0.5rem 0rem 0.5rem;
+    cursor: pointer;
+    position: relative;
+    &:hover {
+      border: 1px solid rgb(235, 113, 0);
+      .icon__cart {
+        display: block;
+      }
+    }
+    .icon__cart {
+      display: none;
+      position: absolute;
+      bottom: 0;
+      right: 0%;
+      background-color: rgb(235, 113, 0);
+      border-radius: 3px;
+      color: white;
+      i {
+        font-size: 1.3rem;
+        padding: 1rem 0.5rem;
+      }
+    }
     .gallery-single {
       .img-fluid {
         max-width: 100%;
@@ -68,5 +89,30 @@
       color: #fff;
       box-shadow: 2px 20px 45px 5px rgb(0 0 0 / 20%);
     }
+  }
+}
+.search {
+  font-size: 1rem;
+  position: relative;
+
+  input {
+    border-radius: 8px;
+    outline: none;
+    padding: 2px 1rem;
+    border: 2px solid #666;
+    width: 65%;
+    max-width: 65%;
+  }
+  .icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+.filter {
+  font-size: 1rem;
+  select {
+    padding: 0.2rem 1rem;
+    margin: 0 0.5rem;
   }
 }
