@@ -16,7 +16,7 @@ import dh_gtvt.cnpm.service.IUserService;
 
 @RestController
 @RequestMapping(value = "api/v1")
-@CrossOrigin("*")
+@CrossOrigin("http://127.0.0.1:8083/")
 
 public class AuthController {
 
