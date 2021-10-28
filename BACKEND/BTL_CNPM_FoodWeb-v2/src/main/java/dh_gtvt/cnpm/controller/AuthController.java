@@ -11,26 +11,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import dh_gtvt.cnpm.dto.UserBodyDTO;
+import dh_gtvt.cnpm.dto.UserDTO;
 import dh_gtvt.cnpm.entity.User;
 import dh_gtvt.cnpm.service.IUserService;
 
 @RestController
 @RequestMapping(value = "api/v1")
-@CrossOrigin("http://127.0.0.1:8083/")
+
 
 public class AuthController {
 
 	@Autowired
 	private IUserService service;
-	
+
+	@CrossOrigin("*")
 	@GetMapping("/login")
-	public ResponseEntity<?> login(Principal principal){
+	public ResponseEntity<?> login(Principal principal) {
 		String email = principal.getName();
-		//get info
-		User user= service.getUserByEmail(email);
-		
-		UserBodyDTO dto =new UserBodyDTO(user.getId(), email, user.getPhone(), user.getFirstName(), user.getLastName());
-		
+		// get info
+		User user = service.getUserByEmail(email);
+		UserDTO dto = new UserDTO(user.getId(), email, user.getPhone(), user.getFullName());
+
 		return new ResponseEntity<>(dto, HttpStatus.OK);
 	}
 }

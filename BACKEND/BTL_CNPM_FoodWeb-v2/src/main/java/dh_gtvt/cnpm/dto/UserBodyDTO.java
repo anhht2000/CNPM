@@ -1,24 +1,27 @@
 package dh_gtvt.cnpm.dto;
 
 public class UserBodyDTO {
-	
+
 	private short id;
-	
+
 	private String email;
-	
+
 	private String phone;
-	
+
 	private String firstName;
-	
+
 	private String lastName;
 
-	public UserBodyDTO(short id, String email, String phone, String firstName, String lastName) {
+	private String token;
+
+	public UserBodyDTO(short id, String email, String phone, String firstName, String lastName, String token) {
 		super();
 		this.id = id;
 		this.email = email;
 		this.phone = phone;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.token = token;
 	}
 
 	public short getId() {
@@ -60,5 +63,13 @@ public class UserBodyDTO {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
 }

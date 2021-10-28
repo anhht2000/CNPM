@@ -47,7 +47,7 @@ public class JWTTokenService {
 		response.setStatus(HttpServletResponse.SC_OK);
 		User user = service.getUserByEmail(email);
 		//the refresh token vao ca body
-		UserBodyDTO dto = new UserBodyDTO(user.getId(), user.getEmail(), user.getPhone(), user.getFirstName(), user.getLastName());
+		UserBodyDTO dto =new UserBodyDTO(user.getId(), email, user.getPhone(), user.getFirstName(),user.getLastName(),PREFIX_TOKEN + " " + JWT) ;
 		String json = new ObjectMapper().writeValueAsString(dto);
 		try {
 			response.getWriter().write(json);
