@@ -4,6 +4,7 @@ import AuthLayout from "../layouts/authLayout.jsx";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import authApi from "../api/authApi.js";
 
 const schema = yup.object().shape({
   email: yup.string().email("Please typing have type is email").required("Please typing your email"),
@@ -23,8 +24,9 @@ export default function Login() {
   const handleMouseDown = ({ target }) => {
     clearErrors(`${target.name}`);
   };
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    const dt = await authApi.login(data);
+    console.log({ data: dt });
   };
   return (
     <AuthLayout>
