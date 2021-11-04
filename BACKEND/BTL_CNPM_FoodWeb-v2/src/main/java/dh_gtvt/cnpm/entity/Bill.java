@@ -26,7 +26,7 @@ public class Bill implements Serializable {
 	@Column(name = "BillID")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private short id;
+	private long id;
 
 	@ManyToOne
 	@JoinColumn(name = "UserID", nullable = false)
@@ -35,7 +35,7 @@ public class Bill implements Serializable {
 	@OneToMany(mappedBy = "bill")
 	private List<BillDetail> billDetails;
 
-	@Column(name = "TotalPrice", nullable = false)
+	@Column(name = "TotalPrice", columnDefinition = "double default 0")
 	private double totalPrice;
 
 	@Column(name = "CreatedAt")
@@ -52,11 +52,11 @@ public class Bill implements Serializable {
 		super();
 	}
 
-	public short getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(short id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

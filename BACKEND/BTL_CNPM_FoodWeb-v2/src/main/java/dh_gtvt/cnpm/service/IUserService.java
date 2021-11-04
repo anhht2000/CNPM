@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import dh_gtvt.cnpm.entity.User;
+import dh_gtvt.cnpm.form.UserFormForSignUp;
 
 public interface IUserService extends UserDetailsService{
 
@@ -13,4 +14,14 @@ public interface IUserService extends UserDetailsService{
 	public User getUserByEmail(String email);
 
 	public boolean isUserExistsByEmail(String email);
+	
+	public boolean isUserExistsByPhone(String phone);
+	
+	public void createUser(UserFormForSignUp form);
+	
+	public void resetPassword(String email);
+
+	void activeUser(User user);
+
+	User getUserByID(short id);
 }

@@ -32,7 +32,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.and()
 				.authorizeRequests()
 				.antMatchers("/api/v1/bill/**").hasAnyAuthority("User","Admin")
-				.antMatchers("/api/v1/login").anonymous()
+				.antMatchers("/api/v1/user/**").anonymous()
 				.antMatchers("/api/v1/foods/**").anonymous()
 				.antMatchers("/api/v1/foodcategory/**").anonymous()
 				.anyRequest().authenticated()
@@ -42,7 +42,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.and()
 				.csrf()
 				.disable()
-				.addFilterBefore(new JWTAuthenticationFilter("/api/v1/login", authenticationManager(), service),
+				.addFilterBefore(new JWTAuthenticationFilter("/api/v1/user/login", authenticationManager(), service),
 						UsernamePasswordAuthenticationFilter.class)
 				.addFilterBefore(new JWTAuthorizationFilter(service), 
 						UsernamePasswordAuthenticationFilter.class);

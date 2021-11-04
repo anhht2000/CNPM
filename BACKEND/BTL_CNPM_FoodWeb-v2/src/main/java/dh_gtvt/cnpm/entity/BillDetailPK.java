@@ -14,7 +14,7 @@ public class BillDetailPK implements Serializable{
 	private short foodID;
 	
 	@Column(name = "BillID")
-	private short billID;
+	private long billID;
 
 	public BillDetailPK() {
 		super();
@@ -28,11 +28,11 @@ public class BillDetailPK implements Serializable{
 		this.foodID = foodID;
 	}
 
-	public short getBillID() {
+	public long getBillID() {
 		return billID;
 	}
 
-	public void setBillID(short billID) {
+	public void setBillID(long billID) {
 		this.billID = billID;
 	}
 	

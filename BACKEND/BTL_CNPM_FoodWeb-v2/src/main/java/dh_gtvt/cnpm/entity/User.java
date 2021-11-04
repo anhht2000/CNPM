@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -20,62 +21,74 @@ import org.hibernate.annotations.Formula;
 
 import dh_gtvt.cnpm.converters.GenderConverter;
 import dh_gtvt.cnpm.converters.RoleConverter;
+import dh_gtvt.cnpm.converters.StatusConverter;
 import dh_gtvt.cnpm.converters.gender;
 import dh_gtvt.cnpm.converters.role;
+import dh_gtvt.cnpm.converters.status;
 
 @Entity
 @Table(name = "User", catalog = "Restaurant")
-public class User implements Serializable{
+public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Column(name = "UserID")
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private short id;
-	
+
 	@OneToMany(mappedBy = "user")
-    private List<Bill> bills;
-	
+	private List<Bill> bills;
+
+	@OneToOne(mappedBy = "user")
+	private resetPassToken resetPassToken;
+
+	@OneToOne(mappedBy = "user")
+	private ActiveToken activeToken;
+
 	@Column(name = "Email", length = 50, nullable = false, unique = true)
 	private String email;
-	
+
 	@Column(name = "PhoneNumber", length = 12, nullable = false, unique = true)
 	private String phone;
-	
+
 	@Column(name = "FirstName", length = 35, nullable = false)
 	private String firstName;
-	
+
 	@Column(name = "LastName", length = 15, nullable = false)
 	private String lastName;
-	
+
 	@Formula(" concat(firstName, ' ', lastname)")
 	private String fullName;
-	
+
 	@Column(name = "PassWord", length = 200, nullable = false)
 	private String passWord;
-	
+
 	@Column(name = "DateOfBirth")
-    @Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateOfBirth;
-	
+
 	@Column(name = "Gender", columnDefinition = "varchar(7) default 'Unknown'")
-    @Convert(converter = GenderConverter.class)
+	@Convert(converter = GenderConverter.class)
 	private gender gender;
-	
+
 	@Column(name = "Address", length = 100, nullable = false)
 	private String address;
-	
+
 	@Column(name = "Role", columnDefinition = "varchar(5) default 'User'")
-    @Convert(converter = RoleConverter.class)
+	@Convert(converter = RoleConverter.class)
 	private role role;
-	
+
+	@Column(name = "Status", columnDefinition = "varchar(9) default 'NotActive'")
+	@Convert(converter = StatusConverter.class)
+	private status status;
+
 	@Column(name = "CreatedAt")
-    @Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.TIMESTAMP)
 	@CreationTimestamp
 	private Date createdDate;
-	
+
 	@Column(name = "UpdatedAt")
-    @Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.TIMESTAMP)
 	@CreationTimestamp
 	private Date updatedDate;
 
@@ -194,6 +207,29 @@ public class User implements Serializable{
 	public void setUpdatedDate(Date updatedDate) {
 		this.updatedDate = updatedDate;
 	}
-	
-	
+
+	public resetPassToken getResetPassToken() {
+		return resetPassToken;
+	}
+
+	public void setResetPassToken(resetPassToken resetPassToken) {
+		this.resetPassToken = resetPassToken;
+	}
+
+	public ActiveToken getActiveToken() {
+		return activeToken;
+	}
+
+	public void setActiveToken(ActiveToken activeToken) {
+		this.activeToken = activeToken;
+	}
+
+	public status getStatus() {
+		return status;
+	}
+
+	public void setStatus(status status) {
+		this.status = status;
+	}
+
 }
