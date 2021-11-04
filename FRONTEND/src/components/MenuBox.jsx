@@ -35,9 +35,14 @@ export default function MenuBox({ filter, foods, children }) {
             foods?.map((e, index) => (
               <div className='col-lg-4 col-md-6 special-grid lunch' key={index}>
                 <div className='gallery-single fix'>
-                  <img src={e.img} className='img-fluid' alt='Image' />
+                  <img
+                    src={e.image}
+                    className='img-fluid'
+                    alt='Image'
+                    style={{ maxHeight: "251px", objectFit: "cover" }}
+                  />
                   <div className='why-text'>
-                    <h4>{e.name}</h4>
+                    <h4>{e.foodName}</h4>
                     <h5>{e.price}</h5>
                   </div>
                 </div>

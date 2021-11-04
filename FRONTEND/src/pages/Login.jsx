@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import authApi from "../api/authApi.js";
+import { toast } from "react-toastify";
 
 const schema = yup.object().shape({
   email: yup.string().email("Please typing have type is email").required("Please typing your email"),
@@ -25,8 +26,16 @@ export default function Login() {
     clearErrors(`${target.name}`);
   };
   const onSubmit = async (data) => {
-    const dt = await authApi.login(data);
-    console.log({ data: dt });
+    try {
+      const dt = await authApi.login(data);
+      if (dt.status === 200) {
+        toast.success("Login successfully");
+      } else {
+        toast.error("Login fail");
+      }
+    } catch (error) {
+      toast.error("Login fail");
+    }
   };
   return (
     <AuthLayout>

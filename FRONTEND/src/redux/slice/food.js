@@ -8,7 +8,7 @@ const initialState = {
 };
 
 const foodSlice = createSlice({
-  name: "app",
+  name: "food",
   initialState,
   reducers: {
     actionGetFood: (state, action) => {
