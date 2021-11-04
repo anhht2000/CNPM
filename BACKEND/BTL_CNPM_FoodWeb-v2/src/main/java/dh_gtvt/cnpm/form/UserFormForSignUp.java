@@ -1,8 +1,6 @@
-package dh_gtvt.cnpm.dto;
+package dh_gtvt.cnpm.form;
 
-public class UserBodyDTO {
-	
-	private short id;
+public class UserFormForSignUp {
 	
 	private String email;
 	
@@ -12,24 +10,19 @@ public class UserBodyDTO {
 	
 	private String lastName;
 	
-	private String token;
+	private String passWord;
+	
+	private String address;
 
-	public UserBodyDTO(short id, String email, String phone, String firstName, String lastName, String token) {
+	public UserFormForSignUp(String email, String phone, String firstName, String lastName, String passWord,
+			String address) {
 		super();
-		this.id = id;
 		this.email = email;
 		this.phone = phone;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.token = token;
-	}
-
-	public short getId() {
-		return id;
-	}
-
-	public void setId(short id) {
-		this.id = id;
+		this.passWord = passWord;
+		this.address = address;
 	}
 
 	public String getEmail() {
@@ -64,13 +57,21 @@ public class UserBodyDTO {
 		this.lastName = lastName;
 	}
 
-	public String getToken() {
-		return token;
+	public String getPassWord() {
+		return passWord;
 	}
 
-	public void setToken(String token) {
-		this.token = token;
+	public void setPassWord(String passWord) {
+		this.passWord = passWord;
 	}
 
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	
 	
 }

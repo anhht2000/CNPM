@@ -8,4 +8,6 @@ import dh_gtvt.cnpm.entity.Food;
 
 public interface IFoodService {
 	public Page<Food> getAllFoods(Pageable pageable,String search,FoodFilter filter);
+	
+	public Food getFoodByID(short id);
 }

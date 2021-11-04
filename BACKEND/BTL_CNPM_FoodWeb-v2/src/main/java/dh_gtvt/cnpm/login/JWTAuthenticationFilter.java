@@ -36,8 +36,10 @@ public class JWTAuthenticationFilter extends AbstractAuthenticationProcessingFil
 			throws AuthenticationException, IOException, ServletException {
 
 		String email = request.getParameter("email");
+		
 		String passWord = request.getParameter("password");
 
+		response.setStatus(HttpServletResponse.SC_OK);
 		return getAuthenticationManager()
 				.authenticate(new UsernamePasswordAuthenticationToken(
 						email,
