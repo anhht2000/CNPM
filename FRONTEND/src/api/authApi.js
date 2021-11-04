@@ -2,8 +2,12 @@ import axiosClient from "./axiosClient";
 
 const authApi = {
   login: (data) => {
-    const url = "/login";
-    return axiosClient.post(url, data);
+    console.log(data);
+    var body = new FormData();
+    body.append('email', data.email);
+    body.append('password', data.password);
+    const url = "/user/login";
+    return axiosClient.post(url, body);
     // const url = "/foods";
     // return axiosClient.get(url, { params: data });
   },

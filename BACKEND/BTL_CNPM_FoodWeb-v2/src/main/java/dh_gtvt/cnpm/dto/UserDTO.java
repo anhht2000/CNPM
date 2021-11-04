@@ -1,12 +1,13 @@
 package dh_gtvt.cnpm.dto;
 
 public class UserDTO {
+
 	private short id;
-
+	
 	private String email;
-
+	
 	private String phone;
-
+	
 	private String fullName;
 
 	public UserDTO(short id, String email, String phone, String fullName) {
@@ -48,4 +49,6 @@ public class UserDTO {
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
 	}
+	
+	
 }
