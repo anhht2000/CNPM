@@ -40,6 +40,11 @@ public class FoodSpecification implements Specification<Food> {
 			return criteriaBuilder.equal(join.get("categoryName"), value.toString());
 		}
 
+		// for filter by food label
+		if (operator.equals("is")) {
+			return criteriaBuilder.equal(root.get(field), value.toString());
+		}
+		
 		return null;
 	}
 

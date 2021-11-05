@@ -5,6 +5,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import dh_gtvt.cnpm.entity.Bill;
 import dh_gtvt.cnpm.entity.BillDetail;
 import dh_gtvt.cnpm.form.BillDetailFormForCreating;
 import dh_gtvt.cnpm.repository.IBillDetailRepository;
@@ -25,10 +26,10 @@ public class BillDetailService implements IBillDetailService {
 	private IBillDetailRepository billDetailRepository;
 
 	@Override
-	public void createBillDetail(long billID,BillDetailFormForCreating form) {
-		BillDetail billDetail = new BillDetail();
-		billDetail.setBill(billRepository.findById(billID).get());
-		billDetail.setFood(foodRepository.findById(form.getFoodID()).get());
+	public void createBillDetail(Bill bill, BillDetailFormForCreating form) {
+		BillDetail billDetail = new BillDetail(bill,foodRepository.findById(form.getFoodID()).get());
+//		billDetail.setBill(bill);
+//		billDetail.setFood(foodRepository.findById(form.getFoodID()).get());
 		billDetail.setAmmount(form.getAmmout());
 		billDetailRepository.save(billDetail);
 	}

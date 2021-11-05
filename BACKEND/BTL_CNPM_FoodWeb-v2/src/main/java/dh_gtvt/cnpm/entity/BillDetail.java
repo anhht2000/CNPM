@@ -12,27 +12,36 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "BillDetail", catalog = "Restaurant")
-public class BillDetail implements Serializable{
+public class BillDetail implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@EmbeddedId
 	private BillDetailPK id;
-	
+
 	@ManyToOne
-    @MapsId("BillID")
-    @JoinColumn(name = "BillID")
+	@MapsId("BillID")
+	@JoinColumn(name = "BillID")
 	private Bill bill;
-	
+
 	@ManyToOne
-    @MapsId("FoodID")
-    @JoinColumn(name = "FoodID")
+	@MapsId("FoodID")
+	@JoinColumn(name = "FoodID")
 	private Food food;
-	
+
 	@Column(name = "Ammount", columnDefinition = "int default 1")
 	private int ammount;
 
 	public BillDetail() {
 		super();
+	}
+
+	public BillDetail(Bill bill, Food food) {
+		super();
+		this.id = new BillDetailPK();
+		id.setBillID(bill.getId());
+		id.setFoodID(food.getFoodId());
+		this.bill = bill;
+		this.food = food;
 	}
 
 	public BillDetailPK getId() {
@@ -66,5 +75,5 @@ public class BillDetail implements Serializable{
 	public void setAmmount(int ammount) {
 		this.ammount = ammount;
 	}
-	
+
 }
