@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import AuthLayout from "../layouts/authLayout.jsx";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -13,6 +13,7 @@ const schema = yup.object().shape({
 });
 export default function Login() {
   const [isShowPass, setIsShowPass] = useState(false);
+  const history = useHistory();
   const {
     register,
     handleSubmit,
@@ -30,6 +31,7 @@ export default function Login() {
       const dt = await authApi.login(data);
       if (dt.status === 200) {
         toast.success("Login successfully");
+        history.replace("/");
       } else {
         toast.error("Login fail");
       }
