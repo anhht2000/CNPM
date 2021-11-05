@@ -26,17 +26,25 @@ const foodSlice = createSlice({
       state.loading = true;
     },
     actionGetCaterSuccess: (state, action) => {
+      state.loading = false;
       state.category = action.payload;
     },
     actionSetFilter: (state, action) => {
       state.currentFilter = action.payload;
     },
+    actionSearch: (state, action) => {},
   },
 });
 
 //action
-export const { actionGetFood, actionGetFoodSuccess, actionGetCater, actionGetCaterSuccess, actionSetFilter } =
-  foodSlice.actions;
+export const {
+  actionGetFood,
+  actionGetFoodSuccess,
+  actionGetCater,
+  actionGetCaterSuccess,
+  actionSetFilter,
+  actionSearch,
+} = foodSlice.actions;
 
 //selector
 export const getCurrentPage = (state) => state.food.currentPage;
