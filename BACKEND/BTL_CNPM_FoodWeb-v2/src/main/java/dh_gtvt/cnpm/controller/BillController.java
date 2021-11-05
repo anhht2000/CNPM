@@ -44,7 +44,7 @@ public class BillController {
 
 		double total = 0;
 		for (BillDetailFormForCreating form : forms) {
-			billDetailService.createBillDetail(bill.getId(),form);
+			billDetailService.createBillDetail(bill,form);
 			//tinh tong tien
 			total += foodService.getFoodByID(form.getFoodID()).getPrice() * form.getAmmout();
 		}
@@ -54,4 +54,13 @@ public class BillController {
 		return new ResponseEntity<String>("Thanh toán hóa đơn thành công!", HttpStatus.CREATED);
 
 	}
+	
+//	@PostMapping("/create")
+//	public ResponseEntity<?> createBill(@RequestParam(value = "userID") short userID
+//			) {
+//		billService.createBill(userID);
+//		
+//		return new ResponseEntity<String>("Thanh toán hóa đơn thành công!", HttpStatus.CREATED);
+//
+//	}
 }
