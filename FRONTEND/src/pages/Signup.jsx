@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import AuthLayout from "../layouts/authLayout.jsx";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import authApi from "../api/authApi.js";
+import { toast } from "react-toastify";
 
 const schema = yup.object().shape({
   email: yup.string().email("Please typing have type is email").required("Please typing your email"),
@@ -22,6 +24,7 @@ const schema = yup.object().shape({
 export default function Signup() {
   const [isShowPass, setIsShowPass] = useState(false);
   const [isShowConfirm, setIsShowConfirm] = useState(false);
+  const history = useHistory();
   const {
     register,
     handleSubmit,
@@ -34,9 +37,19 @@ export default function Signup() {
   const handleMouseDown = ({ target }) => {
     clearErrors(`${target.name}`);
   };
-  const onSubmit = (data) => {
-    data.phone = "0"+String(data?.phone);
-    console.log(data);
+  const onSubmit = async (data) => {
+    data.phone = "0" + String(data?.phone);
+    try {
+      const dt = await authApi.signUp(data);
+      if (dt.status === 201) {
+        toast.success("Signup successfully");
+        history.replace("/login");
+      } else {
+        toast.error("Signup fail");
+      }
+    } catch (error) {
+      toast.error("Signup fail");
+    }
   };
   return (
     <AuthLayout>
@@ -169,7 +182,7 @@ export default function Signup() {
           </button>
           <p className='small fw-bold mt-2 pt-1 mb-0 fs-6'>
             You have account?{" "}
-            <Link to='/log-in' className='link-danger'>
+            <Link to='/login' className='link-danger'>
               Login
             </Link>
           </p>
