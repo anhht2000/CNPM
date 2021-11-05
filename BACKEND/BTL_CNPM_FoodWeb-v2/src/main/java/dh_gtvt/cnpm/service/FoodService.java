@@ -37,6 +37,15 @@ public class FoodService implements IFoodService {
 				where = where.and(foodSpecification);
 			}
 		}
+		
+		if (filter != null && filter.getLabel() != null) {
+			FoodSpecification foodSpecification = new FoodSpecification("label", "is", filter.getLabel());
+			if (where == null) {
+				where = foodSpecification;
+			} else {
+				where = where.and(foodSpecification);
+			}
+		}
 
 		return foodRepository.findAll(where, pageable);
 	}

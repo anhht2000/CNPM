@@ -43,7 +43,7 @@ public class Bill implements Serializable {
 	@CreationTimestamp
 	private Date createdDate;
 
-	@Column(name = "UpdatedAt")
+	@Column(name = "UpdatedAat")
 	@Temporal(TemporalType.TIMESTAMP)
 	@CreationTimestamp
 	private Date updatedDate;
