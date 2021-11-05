@@ -6,6 +6,7 @@ const initialState = {
   category: [],
   currentPage: 1,
   totalPage: 1,
+  currentFilter: "",
 };
 
 const foodSlice = createSlice({
@@ -27,16 +28,21 @@ const foodSlice = createSlice({
     actionGetCaterSuccess: (state, action) => {
       state.category = action.payload;
     },
+    actionSetFilter: (state, action) => {
+      state.currentFilter = action.payload;
+    },
   },
 });
 
 //action
-export const { actionGetFood, actionGetFoodSuccess, actionGetCater, actionGetCaterSuccess } = foodSlice.actions;
+export const { actionGetFood, actionGetFoodSuccess, actionGetCater, actionGetCaterSuccess, actionSetFilter } =
+  foodSlice.actions;
 
 //selector
 export const getCurrentPage = (state) => state.food.currentPage;
 export const getAllFood = (state) => state.food.foods;
 export const getCategory = (state) => state.food.category;
+export const getCurrentFilter = (state) => state.food.currentFilter;
 //reducer
 const foodReducer = foodSlice.reducer;
 export default foodReducer;

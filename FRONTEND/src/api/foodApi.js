@@ -1,13 +1,14 @@
 import axiosClient from "./axiosClient";
 
 const foodApi = {
-  getAllFoods: (pageNumber = 1) => {
+  getAllFoods: ({ pageNumber, category }) => {
     const url = "/foods";
+
     return axiosClient.get(url, {
       params: {
-        pageNumber,
+        pageNumber: pageNumber || 1,
         pageSize: 9,
-        // Number(process.env.REACT_APP_LIMIT) ||
+        category: category || undefined,
       },
     });
   },

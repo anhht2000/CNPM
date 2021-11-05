@@ -1,7 +1,13 @@
 import { call, put, takeLatest } from "@redux-saga/core/effects";
 import { toast } from "react-toastify";
 import foodApi from "../../api/foodApi";
-import { actionGetCater, actionGetCaterSuccess, actionGetFood, actionGetFoodSuccess } from "../slice/food";
+import {
+  actionGetCater,
+  actionGetCaterSuccess,
+  actionGetFood,
+  actionGetFoodSuccess,
+  actionSetFilter,
+} from "../slice/food";
 
 function* handleGetFood({ payload }) {
   try {
@@ -22,7 +28,17 @@ function* handleGetCater() {
   }
 }
 
+function* handleSetFilter({ payload }) {
+  try {
+    const { data } = yield call(foodApi.getAllFoods, { category: payload });
+    yield put(actionGetFoodSuccess(data));
+  } catch (error) {
+    toast.error("System have a problem");
+  }
+}
+
 export default function* foodSaga() {
   yield takeLatest(actionGetFood.type, handleGetFood);
   yield takeLatest(actionGetCater.type, handleGetCater);
+  yield takeLatest(actionSetFilter.type, handleSetFilter);
 }

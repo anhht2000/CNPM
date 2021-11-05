@@ -1,8 +1,14 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { actionSetFilter, getCurrentFilter } from "../redux/slice/food";
 
 export default function MenuBox({ filter, foods, children }) {
-  const [currentFilter, setCurrentFilter] = useState(0);
+  const currentFilter = useSelector(getCurrentFilter);
+  const dispatch = useDispatch();
+  const handleClickFilter = (data) => {
+    dispatch(actionSetFilter(data));
+  };
   return (
     <div className='menu-box'>
       <div className='container'>
@@ -19,8 +25,12 @@ export default function MenuBox({ filter, foods, children }) {
             <div className='special-menu text-center'>
               <div className='button-group filter-button-group'>
                 {filter &&
-                  filter?.map((item) => (
-                    <button key={item.id} className={currentFilter === item.id ? "active" : ""}>
+                  filter?.map((item, index) => (
+                    <button
+                      key={index}
+                      className={currentFilter === item.categoryName ? "active" : ""}
+                      onClick={() => handleClickFilter(item.categoryName)}
+                    >
                       {item?.categoryName}
                     </button>
                   ))}
@@ -39,7 +49,7 @@ export default function MenuBox({ filter, foods, children }) {
                     src={e.image}
                     className='img-fluid'
                     alt='Image'
-                    style={{ height: "251px", objectFit: "cover" }}
+                    style={{ height: "251px", width: "100%", objectFit: "cover" }}
                   />
                   <div className='why-text'>
                     <h4 id='text__flow'>{e.foodName}</h4>
