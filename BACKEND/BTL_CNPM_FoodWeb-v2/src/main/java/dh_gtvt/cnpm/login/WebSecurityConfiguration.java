@@ -41,7 +41,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/api/v1/foods/**").anonymous()
 				.antMatchers("/api/v1/foodcategory/**").anonymous()
 				.anyRequest().authenticated()
-				// .anyRequest().permitAll()
+//				 .anyRequest().permitAll()
 				.and()
 				.httpBasic()
 				.and()

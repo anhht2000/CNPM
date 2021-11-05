@@ -2,10 +2,7 @@ import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import appReducer from "./slice";
 import createSagaMiddleware from "redux-saga";
 import rootSaga from "./saga/rootSaga";
-
-const rootReducer = combineReducers({
-  app: appReducer,
-});
+import rootReducer from "./slice";
 
 const sagaMiddleware = createSagaMiddleware();
 
