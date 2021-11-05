@@ -11,11 +11,15 @@ import {
   actionGetCater,
   actionGetFood,
   actionSearch,
+  actionSetCurrentPage,
   getAllFood,
   getCategory,
   getCurrentFilter,
   getCurrentPage,
+  getTotalPage,
 } from "../redux/slice/food.js";
+import RPagination from "../components/Pagination.jsx";
+import { Container, Row } from "reactstrap";
 
 const category = [
   { id: 1, name: "Chicken" },
@@ -41,9 +45,15 @@ export default function MenuPage() {
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
   const currentPage = useSelector(getCurrentPage);
+  const totalPage = useSelector(getTotalPage);
   const category = useSelector(getCategory);
   const listFood = useSelector(getAllFood);
   const currentFilter = useSelector(getCurrentFilter);
+
+  const handleClickPagination = (data) => {
+    const page = (data < 1 && 1) || (data > totalPage && totalPage) || data;
+    dispatch(actionSetCurrentPage(page));
+  };
 
   const handleSearch = (e) => {
     setSearch(e.target.value);
@@ -86,6 +96,13 @@ export default function MenuPage() {
           </div>
         </div>
       </MenuBox>
+
+      <Container>
+        <Row>
+          <RPagination currentPage={currentPage} totalPage={totalPage} handleClick={handleClickPagination} />
+        </Row>
+      </Container>
+
       <Banner img={bannerImg.home} content={content} author={author} />
       <Contact />
     </CommonLayout>

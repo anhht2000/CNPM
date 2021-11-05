@@ -33,6 +33,9 @@ const foodSlice = createSlice({
       state.currentFilter = action.payload;
     },
     actionSearch: (state, action) => {},
+    actionSetCurrentPage: (state, action) => {
+      state.currentPage = action.payload;
+    },
   },
 });
 
@@ -44,10 +47,12 @@ export const {
   actionGetCaterSuccess,
   actionSetFilter,
   actionSearch,
+  actionSetCurrentPage,
 } = foodSlice.actions;
 
 //selector
 export const getCurrentPage = (state) => state.food.currentPage;
+export const getTotalPage = (state) => state.food.totalPage;
 export const getAllFood = (state) => state.food.foods;
 export const getCategory = (state) => state.food.category;
 export const getCurrentFilter = (state) => state.food.currentFilter;
