@@ -11,5 +11,9 @@ const foodApi = {
       },
     });
   },
+  getCategory: () => {
+    const url = "/foodcategory";
+    return axiosClient.get(url);
+  },
 };
 export default foodApi;

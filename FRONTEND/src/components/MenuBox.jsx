@@ -21,7 +21,7 @@ export default function MenuBox({ filter, foods, children }) {
                 {filter &&
                   filter?.map((item) => (
                     <button key={item.id} className={currentFilter === item.id ? "active" : ""}>
-                      {item.name}
+                      {item?.categoryName}
                     </button>
                   ))}
               </div>
@@ -39,11 +39,16 @@ export default function MenuBox({ filter, foods, children }) {
                     src={e.image}
                     className='img-fluid'
                     alt='Image'
-                    style={{ maxHeight: "251px", objectFit: "cover" }}
+                    style={{ height: "251px", objectFit: "cover" }}
                   />
                   <div className='why-text'>
-                    <h4>{e.foodName}</h4>
-                    <h5>{e.price}</h5>
+                    <h4 id='text__flow'>{e.foodName}</h4>
+                    <h5 style={{ color: "#e48c19", fontSize: "25px" }}>
+                      {e?.price.toLocaleString("vi-VN", {
+                        style: "currency",
+                        currency: "VND",
+                      })}
+                    </h5>
                   </div>
                 </div>
                 <div className='icon__cart'>
