@@ -34,6 +34,9 @@ public class Food implements Serializable{
 	@Column(name = "image", length = 500, nullable = false)
 	private String image;
 	
+	@Column(name = "Label", length = 25)
+	private String label;
+	
 	@Column(name = "FoodAmount", nullable = false)
 	private int foodAmount;
 
@@ -88,5 +91,14 @@ public class Food implements Serializable{
 	public void setFoodAmount(int foodAmount) {
 		this.foodAmount = foodAmount;
 	}
+
+	public String getLabel() {
+		return label;
+	}
+
+	public void setLabel(String label) {
+		this.label = label;
+	}
+	
 	
 }

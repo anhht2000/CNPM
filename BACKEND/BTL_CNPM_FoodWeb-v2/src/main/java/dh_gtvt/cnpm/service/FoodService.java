@@ -40,4 +40,10 @@ public class FoodService implements IFoodService {
 
 		return foodRepository.findAll(where, pageable);
 	}
+
+	@Override
+	public Food getFoodByID(short id) {
+		return foodRepository.findById(id).get();
+	}
+	
 }
