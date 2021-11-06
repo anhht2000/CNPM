@@ -7,6 +7,10 @@ const initialState = {
   currentPage: 1,
   totalPage: 1,
   currentFilter: "",
+  filter: {
+    price: "",
+    date: "",
+  },
 };
 
 const foodSlice = createSlice({
@@ -31,10 +35,27 @@ const foodSlice = createSlice({
     },
     actionSetFilter: (state, action) => {
       state.currentFilter = action.payload;
+      state.filter = {
+        price: "",
+        date: "",
+      };
     },
-    actionSearch: (state, action) => {},
+    actionSearch: (state, action) => {
+      state.currentFilter = "";
+      state.filter = {
+        price: "",
+        date: "",
+      };
+    },
     actionSetCurrentPage: (state, action) => {
-      state.currentPage = action.payload;
+      state.currentPage = action.payload.page;
+      state.filter = {
+        price: "",
+        date: "",
+      };
+    },
+    actionSetFilterAll: (state, action) => {
+      state.filter = action.payload;
     },
   },
 });
@@ -48,6 +69,7 @@ export const {
   actionSetFilter,
   actionSearch,
   actionSetCurrentPage,
+  actionSetFilterAll,
 } = foodSlice.actions;
 
 //selector
@@ -56,6 +78,7 @@ export const getTotalPage = (state) => state.food.totalPage;
 export const getAllFood = (state) => state.food.foods;
 export const getCategory = (state) => state.food.category;
 export const getCurrentFilter = (state) => state.food.currentFilter;
+export const getFilter = (state) => state.food.filter;
 //reducer
 const foodReducer = foodSlice.reducer;
 export default foodReducer;

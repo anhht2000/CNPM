@@ -12,10 +12,12 @@ import {
   actionGetFood,
   actionSearch,
   actionSetCurrentPage,
+  actionSetFilterAll,
   getAllFood,
   getCategory,
   getCurrentFilter,
   getCurrentPage,
+  getFilter,
   getTotalPage,
 } from "../redux/slice/food.js";
 import RPagination from "../components/Pagination.jsx";
@@ -49,10 +51,11 @@ export default function MenuPage() {
   const category = useSelector(getCategory);
   const listFood = useSelector(getAllFood);
   const currentFilter = useSelector(getCurrentFilter);
+  const filter = useSelector(getFilter);
 
   const handleClickPagination = (data) => {
     const page = (data < 1 && 1) || (data > totalPage && totalPage) || data;
-    dispatch(actionSetCurrentPage(page));
+    dispatch(actionSetCurrentPage({ page, currentFilter }));
   };
 
   const handleSearch = (e) => {
@@ -61,6 +64,12 @@ export default function MenuPage() {
       dispatch(actionSearch(prev));
       return prev;
     });
+  };
+
+  const handleChange = ({ target }) => {
+    const { value, name } = target;
+    const newFilter = { ...filter, [name]: value };
+    dispatch(actionSetFilterAll(newFilter));
   };
 
   useEffect(() => {
@@ -77,31 +86,33 @@ export default function MenuPage() {
       <MenuBox filter={category.slice(0, 4)} foods={listFood}>
         <div className='row py-3'>
           <div className='col col-6 search'>
-            <input type='text' placeholder='Enter to search' value={search} onChange={handleSearch} />
+            <input type='text' placeholder='Nhập để tìm kiếm' value={search} onChange={handleSearch} />
             {/* <i className='fa fa-search icon'></i> */}
           </div>
           <div className='col col-6 filter'>
             <div className='d-inline-flex justify-content-end w-100'>
-              <select name='price' id=''>
-                <option value=''>Price</option>
-                <option value='1'>Ascending</option>
-                <option value='2'>Descending</option>
+              <select name='price' value={filter?.price} onChange={handleChange}>
+                <option value=''>Giá tiền</option>
+                <option value='asc'>Từ thấp - cao</option>
+                <option value='desc'>Từ cao - thấp</option>
               </select>
-              <select name='date' id=''>
-                <option value=''>New</option>
-                <option value='1'>Ascending</option>
-                <option value='2'>Descending</option>
+              <select name='date' id='' value={filter?.date} onChange={handleChange}>
+                <option value=''>Ngày tạo</option>
+                <option value='asc'>Mới hơn</option>
+                <option value='desc'>Cũ hơn</option>
               </select>
             </div>
           </div>
         </div>
       </MenuBox>
 
-      <Container>
-        <Row>
-          <RPagination currentPage={currentPage} totalPage={totalPage} handleClick={handleClickPagination} />
-        </Row>
-      </Container>
+      {totalPage > 1 && (
+        <Container>
+          <Row>
+            <RPagination currentPage={currentPage} totalPage={totalPage} handleClick={handleClickPagination} />
+          </Row>
+        </Container>
+      )}
 
       <Banner img={bannerImg.home} content={content} author={author} />
       <Contact />
