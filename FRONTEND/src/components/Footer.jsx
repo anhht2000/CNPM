@@ -7,15 +7,14 @@ export default function Footer() {
       <div className='container'>
         <div className='row'>
           <div className='col-lg-3 col-md-6'>
-            <h3>About Us</h3>
+            <h3>Về BHAFoods</h3>
             <p>
-              Integer cursus scelerisque ipsum id efficitur. Donec a dui fringilla, gravida lorem ac, semper magna.
-              Aenean rhoncus ac lectus a interdum. Vivamus semper posuere dui, at ornare turpis ultrices sit amet. Nulla
-              cursus lorem ut nisi porta, ac eleifend arcu ultrices.
+              Với kinh nghiệm hơn 10 năm trên thị trường thì chúng tôi hiểu khách hàng cần gì và muốn gì. Vì vậy chúng
+              tôi luôn đặt chất lượng lên hàng đầu và lợi nhuận chỉ là một phần
             </p>
           </div>
           <div className='col-lg-3 col-md-6'>
-            <h3>Opening hours</h3>
+            <h3>Giờ mở cửa</h3>
             <p>
               <span className='text-color'>Monday: </span>Closed
             </p>
@@ -30,7 +29,7 @@ export default function Footer() {
             </p>
           </div>
           <div className='col-lg-3 col-md-6'>
-            <h3>Contact information</h3>
+            <h3>Thông tin liên hệ</h3>
             <p className='lead'>3 Cau Giay Street, HongKong Tower, HaNoi City, VietNam</p>
             <p className='lead'>
               <a href='#'>+84 985 789 577</a>
@@ -40,18 +39,18 @@ export default function Footer() {
             </p>
           </div>
           <div className='col-lg-3 col-md-6'>
-            <h3>Subscribe</h3>
+            <h3>Liên hệ</h3>
             <div className='subscribe_form'>
               <form className='subscribe_form'>
                 <input
                   name='EMAIL'
                   id='subs-email'
                   className='form_input'
-                  placeholder='Email Address...'
+                  placeholder='Địa chỉ email...'
                   type='email'
                 />
                 <button type='submit' className='submit'>
-                  SUBSCRIBE
+                  Đăng ký
                 </button>
                 <div className='clearfix'></div>
               </form>

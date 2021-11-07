@@ -1,3 +1,4 @@
+import AddToCart from "../pages/AddToCart.jsx";
 import HomePage from "../pages/HomePage.jsx";
 import Login from "../pages/Login.jsx";
 import MenuPage from "../pages/MenuPage.jsx";
@@ -35,6 +36,13 @@ const router = [
     name: "Signup Page",
     exact: true,
     component: Signup,
+    routes: [],
+  },
+  {
+    path: "/add-to-cart",
+    name: "Add To Cart Page",
+    exact: true,
+    component: AddToCart,
     routes: [],
   },
 ];
