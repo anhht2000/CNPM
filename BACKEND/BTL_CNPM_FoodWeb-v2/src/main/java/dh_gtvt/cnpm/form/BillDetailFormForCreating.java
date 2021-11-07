@@ -2,22 +2,22 @@ package dh_gtvt.cnpm.form;
 
 public class BillDetailFormForCreating {
 
-	private short foodID;
+	private String foodName;
 
 	private int ammout;
 
-	public BillDetailFormForCreating(short foodID, int ammout) {
+	public BillDetailFormForCreating(String foodName, int ammout) {
 		super();
-		this.foodID = foodID;
+		this.foodName = foodName;
 		this.ammout = ammout;
 	}
 
-	public short getFoodID() {
-		return foodID;
+	public String getFoodName() {
+		return foodName;
 	}
 
-	public void setFoodID(short foodID) {
-		this.foodID = foodID;
+	public void setFoodName(String foodName) {
+		this.foodName = foodName;
 	}
 
 	public int getAmmout() {

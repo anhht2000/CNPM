@@ -10,4 +10,6 @@ public interface IFoodService {
 	public Page<Food> getAllFoods(Pageable pageable,String search,FoodFilter filter);
 	
 	public Food getFoodByID(short id);
+
+	Food getFoodByName(String name);
 }

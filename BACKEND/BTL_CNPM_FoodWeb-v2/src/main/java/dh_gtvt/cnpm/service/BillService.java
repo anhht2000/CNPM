@@ -1,18 +1,18 @@
 package dh_gtvt.cnpm.service;
 
-import java.util.ArrayList;
-import java.util.Date;
-
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import dh_gtvt.cnpm.entity.Bill;
-import dh_gtvt.cnpm.entity.BillDetail;
 import dh_gtvt.cnpm.entity.User;
 import dh_gtvt.cnpm.repository.IBillRepository;
 import dh_gtvt.cnpm.repository.IUserRepository;
+import dh_gtvt.cnpm.specification.BillSpecification;
 
 @Service
 @Transactional
@@ -25,13 +25,15 @@ public class BillService implements IBillService{
 	private IUserRepository userRepository;
 	
 	@Override
-	public void createBill(short userID) {
+	public long createBill(short userID) {
 		User user = userRepository.findById(userID).get();
 		Bill bill = new Bill();
 		bill.setUser(user);
+		bill.setBillDetails(null);
 		bill.setTotalPrice(0);
-		//bill.setBillDetails(new ArrayList<BillDetail>());
 		billRepository.save(bill);
+		billRepository.flush();
+		return bill.getId();
 	}
 	
 	@Override
@@ -41,7 +43,19 @@ public class BillService implements IBillService{
 	}
 
 	@Override
-	public Bill getBillByUser(User user) {
-		return billRepository.findByUser(user);
+	public Page<Bill> getAllBillByUser(Pageable pageable, short userId) {
+		Specification<Bill> where = null;
+
+		if (userId != 0) {
+			where = new BillSpecification("user", "=", userId);
+		}
+		
+		return billRepository.findAll(where, pageable);
 	}
+	
+	@Override
+	public Bill getBillById(long id) {
+		return billRepository.findById(id).get();
+	}
+
 }
