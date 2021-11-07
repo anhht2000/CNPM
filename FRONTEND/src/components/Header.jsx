@@ -1,11 +1,16 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import { logoImg } from "../asset";
-import { getNumberCart } from "../redux/slice/food";
+import { actionSetNumberCart, getNumberCart } from "../redux/slice/food";
 
 export default function Header() {
   const numberCart = useSelector(getNumberCart);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const number = JSON.parse(localStorage.getItem("numberFood")) || 0;
+    dispatch(actionSetNumberCart(number));
+  }, [numberCart]);
   return (
     <header className='top-navbar'>
       <nav className='navbar navbar-expand-lg navbar-light bg-light'>
@@ -37,9 +42,9 @@ export default function Header() {
                 </NavLink>
               </li>
               <li className='nav-item'>
-                <a className='nav-link' href='about.html'>
-                  Chi tiết
-                </a>
+                <NavLink to='/add-to-cart' activeClassName='link--active' className='nav-link'>
+                  Chi tiết hóa đơn
+                </NavLink>
               </li>
               <li className='nav-item'>
                 <a className='nav-link' href='contact.html'>
@@ -52,10 +57,12 @@ export default function Header() {
             <Link to='/menu'>
               <i className='fa fa-search'></i>
             </Link>
-            <div id={"cart"}>
-              <i className='fa fa-shopping-cart'></i>
-              {numberCart !== 0 && <span>{numberCart}</span>}
-            </div>
+            <Link to='/add-to-cart'>
+              <div id={"cart"}>
+                <i className='fa fa-shopping-cart'></i>
+                {numberCart !== 0 && <span>{numberCart}</span>}
+              </div>
+            </Link>
             <i className='fa fa-user'></i>
           </div>
         </div>

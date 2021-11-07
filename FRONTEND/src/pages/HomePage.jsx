@@ -46,11 +46,6 @@ export default function HomePage() {
     dispatch(actionGetTop());
   }, []);
 
-  useEffect(() => {
-    const number = JSON.parse(localStorage.getItem("numberFood")) || 0;
-    dispatch(actionSetNumberCart(number));
-  }, []);
-
   return (
     <CommonLayout>
       <Slider arrImage={arrImage} />

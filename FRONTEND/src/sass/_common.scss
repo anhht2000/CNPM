@@ -96,3 +96,27 @@
     border: 1px solid white;
   }
 }
+.card__content {
+  font-size: 1rem;
+}
+.card-body {
+  table {
+    max-height: 60vh;
+    overflow: hidden;
+    tr {
+      th,
+      td {
+        text-align: center;
+        h5 {
+          font-weight: 600;
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}
+#image-cart {
+  width: 150px;
+  height: 120px;
+  object-fit: cover;
+}
