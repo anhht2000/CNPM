@@ -22,7 +22,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 public class JWTTokenService implements IJWTTokenService {
 
-	private static final long EXPIRATION_TIME = 3600; //
+	private static final long EXPIRATION_TIME = 86400000; //1 day
 	private static final String SECRET = "123456";
 	private static final String PREFIX_TOKEN = "Bearer";
 	private static final String AUTHORIZATION = "Authorization";

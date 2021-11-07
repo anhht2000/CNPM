@@ -27,16 +27,18 @@ export default function Slider({ arrImage }) {
                 <div className='col-md-12'>
                   <h1 className='m-b-20'>
                     <strong>
-                      Welcome To <br /> BHA Foods
+                      Xin chào đến với
+                      <br /> BHA Foods
                     </strong>
                   </h1>
                   <p className='m-b-40'>
-                    See how your users experience your website in realtime or view <br />
-                    trends to see any changes in performance over time.
+                    Chúng tôi luôn mang lại những sản phẩm giá trị cao vì
+                    <br />
+                    đồ ăn chính là biểu tượng của tình yêu khi ta không tìm ra từ ngữ nào để diễn tả.
                   </p>
                   <p>
                     <a className='btn btn-lg btn-circle btn-outline-new-white' href='#'>
-                      Reservation
+                      Xem thêm
                     </a>
                   </p>
                 </div>

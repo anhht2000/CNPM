@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import AuthLayout from "../layouts/authLayout.jsx";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import authApi from "../api/authApi.js";
+import { toast } from "react-toastify";
 
 const schema = yup.object().shape({
   email: yup.string().email("Please typing have type is email").required("Please typing your email"),
@@ -12,6 +13,7 @@ const schema = yup.object().shape({
 });
 export default function Login() {
   const [isShowPass, setIsShowPass] = useState(false);
+  const history = useHistory();
   const {
     register,
     handleSubmit,
@@ -25,8 +27,17 @@ export default function Login() {
     clearErrors(`${target.name}`);
   };
   const onSubmit = async (data) => {
-    const dt = await authApi.login(data);
-    console.log({ data: dt });
+    try {
+      const dt = await authApi.login(data);
+      if (dt.status === 200) {
+        toast.success("Login successfully");
+        history.replace("/");
+      } else {
+        toast.error("Login fail");
+      }
+    } catch (error) {
+      toast.error("Login fail");
+    }
   };
   return (
     <AuthLayout>
@@ -110,7 +121,7 @@ export default function Login() {
           </button>
           <p className='small fw-bold mt-2 pt-1 mb-0 fs-6'>
             Don't have an account?{" "}
-            <Link to='sign-up' className='link-danger'>
+            <Link to='signup' className='link-danger'>
               Register
             </Link>
           </p>

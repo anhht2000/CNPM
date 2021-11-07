@@ -1,18 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { combineReducers } from "redux";
+import foodReducer from "./food";
+import homeReducer from "./home";
 
-const initialState = {
-  loading: false,
-};
-
-const appSlice = createSlice({
-  name: "app",
-  initialState,
-  reducers: {
-    actionGet: (state, action) => {
-      state.loading = true;
-    },
-  },
+const rootReducer = combineReducers({
+  food: foodReducer,
+  home: homeReducer,
 });
-
-const appReducer = appSlice.reducer;
-export default appReducer;
+export default rootReducer;

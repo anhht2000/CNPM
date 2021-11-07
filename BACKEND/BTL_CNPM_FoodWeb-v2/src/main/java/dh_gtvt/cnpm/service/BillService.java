@@ -1,11 +1,15 @@
 package dh_gtvt.cnpm.service;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dh_gtvt.cnpm.entity.Bill;
+import dh_gtvt.cnpm.entity.BillDetail;
 import dh_gtvt.cnpm.entity.User;
 import dh_gtvt.cnpm.repository.IBillRepository;
 import dh_gtvt.cnpm.repository.IUserRepository;
@@ -26,6 +30,7 @@ public class BillService implements IBillService{
 		Bill bill = new Bill();
 		bill.setUser(user);
 		bill.setTotalPrice(0);
+		//bill.setBillDetails(new ArrayList<BillDetail>());
 		billRepository.save(bill);
 	}
 	
