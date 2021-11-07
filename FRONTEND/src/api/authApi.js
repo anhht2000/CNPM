@@ -3,11 +3,12 @@ import axiosClient from "./axiosClient";
 const authApi = {
   login: (data) => {
     const url = "/user/login";
-    return axiosClient.get(url, { params: { email: data.email, password: data.password } });
-    // const dt = new FormData();
-    // dt.append("email", data.email);
-    // dt.append("password", data.password);
-    // return axiosClient.post(url, data);
+    // return axiosClient.get(url, { params: { email: data.email, password: data.password } });
+    const dt = new FormData();
+    dt.append("email", data.email);
+    dt.append("password", data.password);
+
+    return axiosClient.post(url, dt);
   },
   signUp: (data) => {
     const url = "/user/signup";
