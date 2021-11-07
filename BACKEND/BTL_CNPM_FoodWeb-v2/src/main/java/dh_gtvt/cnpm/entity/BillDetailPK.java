@@ -20,6 +20,12 @@ public class BillDetailPK implements Serializable{
 		super();
 	}
 
+	public BillDetailPK(long billID, short foodID) {
+		super();
+		this.foodID = foodID;
+		this.billID = billID;
+	}
+
 	public short getFoodID() {
 		return foodID;
 	}

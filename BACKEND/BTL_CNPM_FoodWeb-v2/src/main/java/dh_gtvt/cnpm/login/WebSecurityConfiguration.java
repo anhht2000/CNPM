@@ -41,13 +41,13 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/api/v1/foods/**").anonymous()
 				.antMatchers("/api/v1/foodcategory/**").anonymous()
 				.anyRequest().authenticated()
-//				 .anyRequest().permitAll()
+				// .anyRequest().permitAll()
 				.and()
 				.httpBasic()
 				.and()
 				.csrf()
 				.disable()
-				.addFilterBefore(new JWTAuthenticationFilter("/api/v1/login", authenticationManager(), service),
+				.addFilterBefore(new JWTAuthenticationFilter("/api/v1/user/login", authenticationManager(), service),
 						UsernamePasswordAuthenticationFilter.class)
 				.addFilterBefore(new JWTAuthorizationFilter(service), 
 						UsernamePasswordAuthenticationFilter.class);

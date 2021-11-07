@@ -35,13 +35,10 @@ public class BillDetail implements Serializable {
 		super();
 	}
 
-	public BillDetail(Bill bill, Food food) {
+	public BillDetail(BillDetailPK pk, int amount) {
 		super();
-		this.id = new BillDetailPK();
-		id.setBillID(bill.getId());
-		id.setFoodID(food.getFoodId());
-		this.bill = bill;
-		this.food = food;
+		this.id = pk;
+		this.ammount = amount;
 	}
 
 	public BillDetailPK getId() {

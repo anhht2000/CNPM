@@ -7,4 +7,5 @@ import dh_gtvt.cnpm.entity.Food;
 
 public interface IFoodRepository extends JpaRepository<Food, Short>, JpaSpecificationExecutor<Food> {
 
+	Food findByFoodName(String name);
 }

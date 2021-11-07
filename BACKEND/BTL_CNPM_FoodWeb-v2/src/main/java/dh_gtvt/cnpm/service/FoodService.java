@@ -55,4 +55,9 @@ public class FoodService implements IFoodService {
 		return foodRepository.findById(id).get();
 	}
 	
+	@Override
+	public Food getFoodByName(String name) {
+		return foodRepository.findByFoodName(name);
+	}
+	
 }
