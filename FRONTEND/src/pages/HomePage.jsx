@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import CommonLayout from "../layouts/commonLayout.jsx";
 import { bannerImg } from "../asset";
 import Banner from "../components/Banner.jsx";
@@ -10,6 +10,8 @@ import { productImg } from "../asset";
 import MenuBox from "../components/MenuBox.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { actionGetTop, getFoodShow } from "../redux/slice/home.js";
+import { actionSetNumberCart, getCurrentFood } from "../redux/slice/food.js";
+import EModal from "../components/EModal.jsx";
 
 const arrImage = [sliderImg.one, sliderImg.two, sliderImg.three];
 const filter = [
@@ -27,12 +29,26 @@ const dataProduct = [
 ];
 
 export default function HomePage() {
-  const content = " If you're not the one cooking, stay out of the way and compliment the chef. ";
-  const author = "Michael Strahan";
+  const content = " Rẻ như bèo, nghèo cũng có tiền mua. ";
+  const author = "-Tuấn Anh";
+  const currentFood = useSelector(getCurrentFood);
+  const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
   const listFood = useSelector(getFoodShow);
+  const handleOpenModal = () => {
+    setOpen(true);
+  };
+  const handleCloseModal = () => {
+    setOpen(false);
+  };
+
   useEffect(() => {
     dispatch(actionGetTop());
+  }, []);
+
+  useEffect(() => {
+    const number = JSON.parse(localStorage.getItem("numberFood")) || 0;
+    dispatch(actionSetNumberCart(number));
   }, []);
 
   return (
@@ -40,8 +56,10 @@ export default function HomePage() {
       <Slider arrImage={arrImage} />
       <About />
       <Banner img={bannerImg.home} content={content} author={author} />
-      <MenuBox homeFil={filter} foods={listFood} />
+      <MenuBox homeFil={filter} foods={listFood} handleOpenModal={handleOpenModal} />
       <Contact />
+
+      <EModal open={open} handleClose={handleCloseModal} food={currentFood} />
     </CommonLayout>
   );
 }

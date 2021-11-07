@@ -1,8 +1,11 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Link, NavLink } from "react-router-dom";
 import { logoImg } from "../asset";
+import { getNumberCart } from "../redux/slice/food";
 
 export default function Header() {
+  const numberCart = useSelector(getNumberCart);
   return (
     <header className='top-navbar'>
       <nav className='navbar navbar-expand-lg navbar-light bg-light'>
@@ -25,28 +28,34 @@ export default function Header() {
             <ul className='navbar-nav ml-auto'>
               <li className='nav-item '>
                 <NavLink to='/' activeClassName='link--active' exact className='nav-link'>
-                  Home
+                  Trang chủ
                 </NavLink>
               </li>
               <li className='nav-item '>
                 <NavLink to='/menu' activeClassName='link--active' className='nav-link'>
-                  Menu
+                  Thực đơn
                 </NavLink>
               </li>
               <li className='nav-item'>
                 <a className='nav-link' href='about.html'>
-                  About
+                  Chi tiết
                 </a>
               </li>
               <li className='nav-item'>
                 <a className='nav-link' href='contact.html'>
-                  Contact
+                  Liên hệ
                 </a>
               </li>
             </ul>
           </div>
           <div className='icon__group'>
-            <i className='fa fa-search'></i>
+            <Link to='/menu'>
+              <i className='fa fa-search'></i>
+            </Link>
+            <div id={"cart"}>
+              <i className='fa fa-shopping-cart'></i>
+              {numberCart !== 0 && <span>{numberCart}</span>}
+            </div>
             <i className='fa fa-user'></i>
           </div>
         </div>

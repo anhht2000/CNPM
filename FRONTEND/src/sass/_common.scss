@@ -8,3 +8,91 @@
 // .page-link {
 //   color: #d0a772;
 // }
+.modal__container {
+  overflow: hidden;
+  display: flex;
+  justify-content: space-around;
+  img {
+    width: 25%;
+    object-fit: contain;
+  }
+  &-right {
+    width: 70%;
+    font-size: 1rem;
+
+    p {
+      margin: 0;
+      &:nth-child(1) {
+        font-size: 1.2rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        color: #e58c19;
+      }
+    }
+  }
+}
+.buttons_added {
+  opacity: 1;
+  display: inline-block;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  white-space: nowrap;
+  vertical-align: top;
+}
+.is-form {
+  overflow: hidden;
+  position: relative;
+  background-color: #f9f9f9;
+  height: 2.2rem;
+  width: 1.9rem;
+  padding: 0;
+  text-shadow: 1px 1px 1px #fff;
+  border: 1px solid #ddd;
+}
+.is-form:focus,
+.input-text:focus {
+  outline: none;
+}
+.is-form.minus {
+  border-radius: 4px 0 0 4px;
+}
+.is-form.plus {
+  border-radius: 0 4px 4px 0;
+}
+.input-qty {
+  background-color: #fff;
+  height: 2.2rem;
+  width: 3rem;
+  text-align: center;
+  font-size: 1rem;
+  display: inline-block;
+  vertical-align: top;
+  margin: 0;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  border-left: 0;
+  border-right: 0;
+  padding: 0;
+}
+.input-qty::-webkit-outer-spin-button,
+.input-qty::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+#cart {
+  display: inline;
+  position: relative;
+  span {
+    position: absolute;
+    top: -15px;
+    right: 0px;
+    background-color: #e48c19;
+    text-align: center;
+    border-radius: 50%;
+    color: white;
+    padding: 0rem 0.3rem;
+    font-size: 0.8rem;
+    border: 1px solid white;
+  }
+}

@@ -8,7 +8,7 @@ export default function Contact() {
           <div className='col-md-4'>
             <i className='fa fa-volume-control-phone'></i>
             <div className='overflow-hidden'>
-              <h4>Phone</h4>
+              <h4>Điện thoại</h4>
               <p className='lead'>+84 985 789 577</p>
             </div>
           </div>
@@ -22,8 +22,8 @@ export default function Contact() {
           <div className='col-md-4'>
             <i className='fa fa-map-marker'></i>
             <div className='overflow-hidden'>
-              <h4>Location</h4>
-              <p className='lead'>3 Cau Giay Street, HongKong Tower, HaNoi City, VietNam</p>
+              <h4>Địa chỉ</h4>
+              <p className='lead'>3 Cau Giay, HongKong Tower, HaNoi , VietNam</p>
             </div>
           </div>
         </div>

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { actionSetFilter, getCurrentFilter } from "../redux/slice/food";
+import { actionSetCurrentFood, actionSetFilter, getCurrentFilter } from "../redux/slice/food";
 import { actioneSetHomeFilter, getBestSell, getHomeCurrentFilter, getNew, getPopular } from "../redux/slice/home";
 
-export default function MenuBox({ filter, foods, children, homeFil }) {
+export default function MenuBox({ filter, foods, children, homeFil, handleOpenModal }) {
   const currentFilter = useSelector(getCurrentFilter);
   const homeCurrentFilter = useSelector(getHomeCurrentFilter);
   const listFood = [useSelector(getBestSell), useSelector(getNew), useSelector(getPopular)];
@@ -15,14 +15,18 @@ export default function MenuBox({ filter, foods, children, homeFil }) {
   const handleClickHomeFilter = (label, list) => {
     dispatch(actioneSetHomeFilter({ filter: label, food: list }));
   };
+  const handleClickCart = (food) => {
+    handleOpenModal();
+    dispatch(actionSetCurrentFood(food));
+  };
   return (
     <div className='menu-box'>
       <div className='container'>
         <div className='row'>
           <div className='col-lg-12'>
             <div className='heading-title text-center'>
-              <h2>Special Menu</h2>
-              <p>Please choose type of food that you want </p>
+              <h2>Thực đơn đặc biệt</h2>
+              <p>Hãy chọn loại sản phẩm mà bạn muốn</p>
             </div>
           </div>
         </div>
@@ -89,7 +93,7 @@ export default function MenuBox({ filter, foods, children, homeFil }) {
                     </h5>
                   </div>
                 </div>
-                <div className='icon__cart'>
+                <div className='icon__cart' onClick={() => handleClickCart(e)}>
                   <i className='fa fa-shopping-cart'></i>
                 </div>
               </div>

@@ -16,12 +16,14 @@ import {
   getAllFood,
   getCategory,
   getCurrentFilter,
+  getCurrentFood,
   getCurrentPage,
   getFilter,
   getTotalPage,
 } from "../redux/slice/food.js";
 import RPagination from "../components/Pagination.jsx";
 import { Container, Row } from "reactstrap";
+import EModal from "../components/EModal.jsx";
 
 const category = [
   { id: 1, name: "Chicken" },
@@ -42,14 +44,16 @@ const dataProduct = [
 ];
 
 export default function MenuPage() {
-  const content = " If you're not the one cooking, stay out of the way and compliment the chef. ";
-  const author = "Michael Strahan";
+  const content = " Mọi hạnh phúc trên đời đều xuất phát từ một bữa sáng nhàn nhã.. ";
+  const author = "-Tiến Bắc";
   const [search, setSearch] = useState("");
+  const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
   const currentPage = useSelector(getCurrentPage);
   const totalPage = useSelector(getTotalPage);
   const category = useSelector(getCategory);
   const listFood = useSelector(getAllFood);
+  const currentFood = useSelector(getCurrentFood);
   const currentFilter = useSelector(getCurrentFilter);
   const filter = useSelector(getFilter);
 
@@ -71,6 +75,12 @@ export default function MenuPage() {
     const newFilter = { ...filter, [name]: value };
     dispatch(actionSetFilterAll(newFilter));
   };
+  const handleOpenModal = () => {
+    setOpen(true);
+  };
+  const handleCloseModal = () => {
+    setOpen(false);
+  };
 
   useEffect(() => {
     dispatch(actionGetFood(currentPage));
@@ -82,8 +92,8 @@ export default function MenuPage() {
   return (
     <CommonLayout>
       <div id='pt-6'></div>
-      <Banner img={bannerImg.menu} content={"Special Menu"} author={""} center={true} />
-      <MenuBox filter={category.slice(0, 4)} foods={listFood}>
+      <Banner img={bannerImg.menu} content={"Thực đơn đặc biệt"} author={""} center={true} />
+      <MenuBox filter={category.slice(0, 4)} foods={listFood} handleOpenModal={handleOpenModal}>
         <div className='row py-3'>
           <div className='col col-6 search'>
             <input type='text' placeholder='Nhập để tìm kiếm' value={search} onChange={handleSearch} />
@@ -113,9 +123,10 @@ export default function MenuPage() {
           </Row>
         </Container>
       )}
-
       <Banner img={bannerImg.home} content={content} author={author} />
       <Contact />
+
+      <EModal open={open} handleClose={handleCloseModal} food={currentFood} />
     </CommonLayout>
   );
 }

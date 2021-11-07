@@ -11,6 +11,8 @@ const initialState = {
     price: "",
     date: "",
   },
+  currentFood: {},
+  numberCart: 0,
 };
 
 const foodSlice = createSlice({
@@ -57,6 +59,12 @@ const foodSlice = createSlice({
     actionSetFilterAll: (state, action) => {
       state.filter = action.payload;
     },
+    actionSetCurrentFood: (state, action) => {
+      state.currentFood = action.payload;
+    },
+    actionSetNumberCart: (state, action) => {
+      state.numberCart = action.payload;
+    },
   },
 });
 
@@ -70,6 +78,8 @@ export const {
   actionSearch,
   actionSetCurrentPage,
   actionSetFilterAll,
+  actionSetCurrentFood,
+  actionSetNumberCart,
 } = foodSlice.actions;
 
 //selector
@@ -79,6 +89,8 @@ export const getAllFood = (state) => state.food.foods;
 export const getCategory = (state) => state.food.category;
 export const getCurrentFilter = (state) => state.food.currentFilter;
 export const getFilter = (state) => state.food.filter;
+export const getCurrentFood = (state) => state.food.currentFood;
+export const getNumberCart = (state) => state.food.numberCart;
 //reducer
 const foodReducer = foodSlice.reducer;
 export default foodReducer;

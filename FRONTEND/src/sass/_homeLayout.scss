@@ -416,9 +416,12 @@ h6 {
 }
 .icon__group {
   i {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     padding: 0 0.5rem;
     cursor: pointer;
+    &:hover {
+      color: #cfa671;
+    }
   }
   @include Responsive(MD) {
     display: none;
