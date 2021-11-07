@@ -106,11 +106,6 @@ export default function MenuPage() {
                 <option value='asc'>Từ thấp - cao</option>
                 <option value='desc'>Từ cao - thấp</option>
               </select>
-              <select name='date' id='' value={filter?.date} onChange={handleChange}>
-                <option value=''>Ngày tạo</option>
-                <option value='asc'>Mới hơn</option>
-                <option value='desc'>Cũ hơn</option>
-              </select>
             </div>
           </div>
         </div>
