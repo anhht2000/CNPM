@@ -1,15 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
+import { toast } from "react-toastify";
 import { Button, Card, CardBody, CardHeader, CardSubtitle, CardTitle, Container, Table } from "reactstrap";
+import foodApi from "../api/foodApi.js";
 import CartItem from "../components/CartItem.jsx";
 import CommonLayout from "../layouts/commonLayout.jsx";
 import { actionSetNumberCart } from "../redux/slice/food.js";
+import { checkLogin } from "../redux/slice/home.js";
 
 export default function AddToCart() {
   const [listFood, setListFood] = useState([]);
   const dispatch = useDispatch();
   const history = useHistory();
+  const isLogin = useSelector(checkLogin);
+
+  if (!isLogin) {
+    history.replace("/login/add-to-cart");
+  }
   useEffect(() => {
     const foods = JSON.parse(localStorage.getItem("cart")) || [];
     setListFood(foods);
@@ -28,6 +36,25 @@ export default function AddToCart() {
     localStorage.setItem("cart", JSON.stringify(newFood));
     localStorage.setItem("numberFood", JSON.stringify(newFood.length));
     dispatch(actionSetNumberCart(newFood.length));
+  };
+
+  const handleBuyFood = async () => {
+    const data = JSON.parse(localStorage.getItem("cart")) || [];
+    const food = data.map((e) => ({ foodName: e.food.foodName, amount: Number(e.quantity) }));
+    try {
+      const dt = await foodApi.createBill(food);
+      if (dt.status === 201) {
+        toast.success("Đặt hàng thành công");
+        localStorage.setItem("cart", JSON.stringify([]));
+        localStorage.setItem("numberFood", JSON.stringify(0));
+        dispatch(actionSetNumberCart(0));
+        history.push("/add-to-cart-success");
+      } else {
+        toast.error("Lỗi hệ thống. Không đặt được hàng");
+      }
+    } catch (error) {
+      toast.error("Lỗi hệ thống. Không đặt được hàng");
+    }
   };
 
   return (
@@ -80,7 +107,7 @@ export default function AddToCart() {
               </h5>
             </CardSubtitle>
             <CardBody>
-              <Button color='primary' className='me-3'>
+              <Button color='primary' className='me-3' onClick={handleBuyFood}>
                 Mua hàng
               </Button>
               <Button

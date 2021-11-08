@@ -19,5 +19,10 @@ const foodApi = {
     const url = "/foodcategory";
     return axiosClient.get(url);
   },
+  createBill: (dt) => {
+    const url = "/bill/create";
+
+    return axiosClient.post(url, dt, { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } });
+  },
 };
 export default foodApi;
