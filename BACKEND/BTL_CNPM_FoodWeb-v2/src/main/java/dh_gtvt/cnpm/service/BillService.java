@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import dh_gtvt.cnpm.entity.Bill;
 import dh_gtvt.cnpm.entity.User;
 import dh_gtvt.cnpm.repository.IBillRepository;
-import dh_gtvt.cnpm.repository.IUserRepository;
 import dh_gtvt.cnpm.specification.BillSpecification;
 
 @Service
@@ -21,12 +20,8 @@ public class BillService implements IBillService{
 	@Autowired
 	private IBillRepository billRepository;
 	
-	@Autowired
-	private IUserRepository userRepository;
-	
 	@Override
-	public long createBill(short userID) {
-		User user = userRepository.findById(userID).get();
+	public long createBill(User user) {
 		Bill bill = new Bill();
 		bill.setUser(user);
 		bill.setBillDetails(null);

@@ -1,5 +1,6 @@
 package dh_gtvt.cnpm.controller;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
@@ -14,15 +15,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import dh_gtvt.cnpm.dto.BillDTO;
-import dh_gtvt.cnpm.dto.FoodDTO;
-import dh_gtvt.cnpm.dto.filters.FoodFilter;
 import dh_gtvt.cnpm.entity.Bill;
 import dh_gtvt.cnpm.entity.BillDetail;
-import dh_gtvt.cnpm.entity.Food;
+import dh_gtvt.cnpm.entity.User;
 import dh_gtvt.cnpm.form.BillDetailFormForCreating;
 import dh_gtvt.cnpm.service.IBillDetailService;
 import dh_gtvt.cnpm.service.IBillService;
@@ -47,9 +45,9 @@ public class BillController {
 	private IFoodService foodService;
 
 	@PostMapping("/create")
-	public ResponseEntity<?> createBill(@RequestParam(value = "userID") short userID,
-			@RequestBody List<BillDetailFormForCreating> forms) {
-		long id = billService.createBill(userID);
+	public ResponseEntity<?> createBill(Principal principal, @RequestBody List<BillDetailFormForCreating> forms) {
+		User user = userService.getUserByEmail(principal.getName());
+		long id = billService.createBill(user);
 		Bill bill = billService.getBillById(id);
 
 		double total = 0;
@@ -67,8 +65,9 @@ public class BillController {
 
 	@GetMapping()
 	public ResponseEntity<?> getAllBillByUser(Pageable pageable,
-			@RequestParam(value = "userId", defaultValue = "") short userId) {
-		Page<Bill> entities = billService.getAllBillByUser(pageable, userId);
+			Principal principal) {
+		User user = userService.getUserByEmail(principal.getName());
+		Page<Bill> entities = billService.getAllBillByUser(pageable, user.getId());
 
 		Page<BillDTO> bills = entities.map(new Function<Bill, BillDTO>() {
 			@Override
