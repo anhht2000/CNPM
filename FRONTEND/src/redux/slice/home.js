@@ -6,6 +6,7 @@ const initialState = {
   sellFood: [],
   foodShow: [],
   currentFilter: "bestseller",
+  isLogin: false,
   // currentHomeFilter:''
 };
 
@@ -26,21 +27,15 @@ const homeSlice = createSlice({
       state.currentFilter = action.payload.filter;
       state.foodShow = action.payload.food;
       console.log("ac", action.payload);
-
-      // switch (action.payload) {
-      //   case "new":
-      //     return (state.foodShow = state.newFood);
-      //   case "bestseller":
-      //     return (state.foodShow = state.sellFood);
-      //   case "popular":
-      //     return (state.foodShow = state.popularFood);
-      // }
+    },
+    actionSetLogin: (state, action) => {
+      state.isLogin = action.payload;
     },
   },
 });
 
 //action
-export const { actionGetTop, actionGetTopSuccess, actioneSetHomeFilter } = homeSlice.actions;
+export const { actionGetTop, actionGetTopSuccess, actioneSetHomeFilter, actionSetLogin } = homeSlice.actions;
 
 //selector
 export const getNew = (state) => state.home.newFood;
@@ -48,6 +43,7 @@ export const getBestSell = (state) => state.home.sellFood;
 export const getPopular = (state) => state.home.popularFood;
 export const getFoodShow = (state) => state.home.foodShow;
 export const getHomeCurrentFilter = (state) => state.home.currentFilter;
+export const checkLogin = (state) => state.home.isLogin;
 //reducer
 const homeReducer = homeSlice.reducer;
 export default homeReducer;

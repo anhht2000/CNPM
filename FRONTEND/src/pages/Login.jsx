@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import AuthLayout from "../layouts/authLayout.jsx";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import authApi from "../api/authApi.js";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { actionSetLogin } from "../redux/slice/home.js";
 
 const schema = yup.object().shape({
   email: yup.string().email("Please typing have type is email").required("Please typing your email"),
@@ -13,7 +15,9 @@ const schema = yup.object().shape({
 });
 export default function Login() {
   const [isShowPass, setIsShowPass] = useState(false);
+  const { path } = useParams();
   const history = useHistory();
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -30,8 +34,10 @@ export default function Login() {
     try {
       const dt = await authApi.login(data);
       if (dt.status === 200) {
+        localStorage.setItem("token", dt?.data?.token.split(" ").slice(1));
+        dispatch(actionSetLogin(true));
         toast.success("Login successfully");
-        history.replace("/");
+        history.replace("/" + path);
       } else {
         toast.error("Login fail");
       }
