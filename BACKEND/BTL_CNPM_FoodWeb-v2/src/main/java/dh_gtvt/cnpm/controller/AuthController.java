@@ -19,7 +19,6 @@ import dh_gtvt.cnpm.entity.User;
 import dh_gtvt.cnpm.form.UserFormForSignUp;
 import dh_gtvt.cnpm.service.IActiveTokenService;
 import dh_gtvt.cnpm.service.IUserService;
-import dh_gtvt.cnpm.service.UserService;
 
 @RestController
 @RequestMapping(value = "api/v1/user")
