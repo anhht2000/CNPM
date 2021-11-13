@@ -7,7 +7,8 @@ const initialState = {
   foodShow: [],
   currentFilter: "bestseller",
   isLogin: false,
-  // currentHomeFilter:''
+  dataReceipt: [],
+  currentReceipt: {},
 };
 
 const homeSlice = createSlice({
@@ -31,11 +32,26 @@ const homeSlice = createSlice({
     actionSetLogin: (state, action) => {
       state.isLogin = action.payload;
     },
+    actionGetReceipt: (state, action) => {},
+    actionGetReceiptSuccess: (state, action) => {
+      state.dataReceipt = action.payload;
+    },
+    actionSetCurrentReceipt: (state, action) => {
+      state.currentReceipt = action.payload;
+    },
   },
 });
 
 //action
-export const { actionGetTop, actionGetTopSuccess, actioneSetHomeFilter, actionSetLogin } = homeSlice.actions;
+export const {
+  actionGetTop,
+  actionGetTopSuccess,
+  actioneSetHomeFilter,
+  actionSetLogin,
+  actionGetReceipt,
+  actionGetReceiptSuccess,
+  actionSetCurrentReceipt,
+} = homeSlice.actions;
 
 //selector
 export const getNew = (state) => state.home.newFood;
@@ -44,6 +60,8 @@ export const getPopular = (state) => state.home.popularFood;
 export const getFoodShow = (state) => state.home.foodShow;
 export const getHomeCurrentFilter = (state) => state.home.currentFilter;
 export const checkLogin = (state) => state.home.isLogin;
+export const getReceipt = (state) => state.home.dataReceipt;
+export const getCurrentReceipt = (state) => state.home.currentReceipt;
 //reducer
 const homeReducer = homeSlice.reducer;
 export default homeReducer;

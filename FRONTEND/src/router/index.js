@@ -1,5 +1,7 @@
 import AddToCart from "../pages/AddToCart.jsx";
 import BuySuccess from "../pages/BuySuccess.jsx";
+import Detailbill from "../pages/DetailBill.jsx";
+import { HistoryOrder } from "../pages/HistoryBill.jsx";
 import HomePage from "../pages/HomePage.jsx";
 import Login from "../pages/Login.jsx";
 import MenuPage from "../pages/MenuPage.jsx";
@@ -21,7 +23,8 @@ const router = [
     routes: [],
   },
   {
-    path: "/login/:path",
+    // path: "/login/:path",
+    path: "/login",
     name: "Login Page",
     exact: false,
     component: Login,
@@ -51,6 +54,20 @@ const router = [
     name: "Success Page",
     exact: true,
     component: BuySuccess,
+    routes: [],
+  },
+  {
+    path: "/history-receipt",
+    name: "History bill Page",
+    exact: true,
+    component: HistoryOrder,
+    routes: [],
+  },
+  {
+    path: "/detail-receipt",
+    name: "History bill Page",
+    exact: true,
+    component: Detailbill,
     routes: [],
   },
 ];

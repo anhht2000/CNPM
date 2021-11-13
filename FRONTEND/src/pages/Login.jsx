@@ -37,7 +37,9 @@ export default function Login() {
         localStorage.setItem("token", dt?.data?.token.split(" ").slice(1));
         dispatch(actionSetLogin(true));
         toast.success("Login successfully");
-        history.replace("/" + path);
+        localStorage.setItem("name", dt.data.firstName);
+        // history.replace("/" + path);
+        history.replace("/");
       } else {
         toast.error("Login fail");
       }
