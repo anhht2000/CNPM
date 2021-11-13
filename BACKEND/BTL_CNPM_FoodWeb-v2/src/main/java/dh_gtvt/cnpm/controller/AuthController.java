@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import dh_gtvt.cnpm.entity.User;
+import dh_gtvt.cnpm.entity.resetPassToken;
 import dh_gtvt.cnpm.form.UserFormForSignUp;
 import dh_gtvt.cnpm.service.IActiveTokenService;
+import dh_gtvt.cnpm.service.IResetPassTokenService;
 import dh_gtvt.cnpm.service.IUserService;
 
 @RestController
@@ -30,6 +32,9 @@ public class AuthController {
 	
 	@Autowired
 	private IActiveTokenService activeTokenService;
+	
+	@Autowired
+	private IResetPassTokenService resetTokenService;
 	
 	private PasswordEncoder encoder;
 	
@@ -66,12 +71,12 @@ public class AuthController {
 		if(!service.isUserExistsByEmail(email)) {
 			return new ResponseEntity<String>("Email chưa đăng ký!", HttpStatus.BAD_REQUEST);
 		}
-		//check expired date
-//		User  user = service.getUserByEmail(email);
-//		if(user.getResetPassToken().getExpiredDate().compareTo(new Date(System.currentTimeMillis()))<0) {
-//			return new ResponseEntity<String>("Link đã hết hạn!", HttpStatus.BAD_REQUEST);
-//		}
+		
+		User user = service.getUserByEmail(email);
+		resetPassToken token = resetTokenService.getResetTokenByUser(user);
+		
 		service.resetPassword(email);
-		return new ResponseEntity<String>("Kiểm tra email để có thể thay đổi mật khẩu!", HttpStatus.OK);
+		return new ResponseEntity<String>("Kiểm tra email để có thể thay đổi mật khẩu!" + "\n"+token.getToken() , HttpStatus.OK);
+
 	}
 }
