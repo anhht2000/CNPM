@@ -33,17 +33,16 @@ export default function ChangePass() {
   };
   const onSubmit = async (data) => {
     try {
-      const dt = await authApi.login(data);
-      if (dt.status === 200) {
-        localStorage.setItem("token", dt?.data?.token.split(" ").slice(1));
-        dispatch(actionSetLogin(true));
-        toast.success("Login successfully");
-        localStorage.setItem("name", dt.data.firstName);
-        // history.replace("/" + path);
-        history.replace("/");
-      } else {
-        toast.error("Login fail");
-      }
+      const dt = await authApi.forget(data);
+      console.log({ data });
+      // if (dt.status === 200) {
+      //   localStorage.setItem("token_reset", dt?.data);
+      //   toast.success("Vui lòng kiểm tra email để đổi lại mật khẩu");
+      //   // history.replace("/" + path);
+      //   history.replace("/");
+      // } else {
+      //   toast.error("Login fail");
+      // }
     } catch (error) {
       toast.error("Login fail");
     }

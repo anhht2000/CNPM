@@ -31,19 +31,16 @@ export default function ForgetPass() {
   };
   const onSubmit = async (data) => {
     try {
-      const dt = await authApi.login(data);
+      const dt = await authApi.forget(data);
       if (dt.status === 200) {
-        localStorage.setItem("token", dt?.data?.token.split(" ").slice(1));
-        dispatch(actionSetLogin(true));
-        toast.success("Login successfully");
-        localStorage.setItem("name", dt.data.firstName);
-        // history.replace("/" + path);
-        history.replace("/");
+        localStorage.setItem("token", dt?.data);
+
+        toast.success("Vui lòng kiểm tra email để đổi lại mật khẩu");
       } else {
-        toast.error("Login fail");
+        toast.error("Tài khoản không tồn tại");
       }
     } catch (error) {
-      toast.error("Login fail");
+      toast.error("Tài khoản không tồn tại");
     }
   };
   return (

@@ -23,10 +23,10 @@ const authApi = {
   },
   forget: (data) => {
     const url = "/user/resetPassWord";
-    const dt = new FormData();
-    dt.append("email", data.email);
+    // const dt = new FormData();
+    // dt.append("email", data.email);
 
-    return axiosClient.post(url, dt);
+    return axiosClient.post(url, data, { params: { email: data.email } });
   },
   changePass: (data) => {
     const url = "/bill/create";

@@ -73,10 +73,10 @@ public class AuthController {
 		}
 		
 		User user = service.getUserByEmail(email);
+		service.resetPassword(email);
 		resetPassToken token = resetTokenService.getResetTokenByUser(user);
 		
-		service.resetPassword(email);
-		return new ResponseEntity<String>("Kiểm tra email để có thể thay đổi mật khẩu!" + "\n"+token.getToken() , HttpStatus.OK);
+		return new ResponseEntity<String>(token.getToken() , HttpStatus.OK);
 
 	}
 }
