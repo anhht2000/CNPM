@@ -1,6 +1,8 @@
 import AddToCart from "../pages/AddToCart.jsx";
 import BuySuccess from "../pages/BuySuccess.jsx";
+import ChangePass from "../pages/ChangePass.jsx";
 import Detailbill from "../pages/DetailBill.jsx";
+import ForgetPass from "../pages/ForgetPass.jsx";
 import { HistoryOrder } from "../pages/HistoryBill.jsx";
 import HomePage from "../pages/HomePage.jsx";
 import Login from "../pages/Login.jsx";
@@ -40,6 +42,21 @@ const router = [
     name: "Signup Page",
     exact: true,
     component: Signup,
+    routes: [],
+  },
+  {
+    path: "/forget-password",
+    name: "Forget Page",
+    exact: true,
+    component: ForgetPass,
+    routes: [],
+  },
+  {
+    path: "/change-password/:token",
+    // path: "/change-password",
+    name: "Change Pass Page",
+    exact: true,
+    component: ChangePass,
     routes: [],
   },
   {

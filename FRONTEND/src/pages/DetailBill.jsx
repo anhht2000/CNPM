@@ -1,7 +1,7 @@
 import moment from "moment";
 import React from "react";
 import { useSelector } from "react-redux";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 import { Container } from "reactstrap";
 import { logoImg } from "../asset/index.js";
 import CommonLayout from "../layouts/commonLayout.jsx";
@@ -83,7 +83,7 @@ const Detailbill = () => {
                 </div>
               </div>
               <div>
-                <span className='ps-btn ps-btn--sm ps-btn--danger' onClick={() => history.push("/history")}>
+                <span className='ps-btn ps-btn--sm ps-btn--danger' onClick={() => history.push("/history-receipt")}>
                   Quay lại
                 </span>
               </div>

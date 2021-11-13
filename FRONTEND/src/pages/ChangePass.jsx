@@ -10,11 +10,12 @@ import { useDispatch } from "react-redux";
 import { actionSetLogin } from "../redux/slice/home.js";
 
 const schema = yup.object().shape({
-  email: yup.string().email("Hãy nhập định dạng email").required("Bạn phải nhập email"),
   password: yup.string().min(5, "Bạn phải nhập mật khẩu").required("Bạn phải nhập mật khẩu"),
+  confirm: yup.string().oneOf([yup.ref("password")], "Mật khẩu không tương ứng"),
 });
-export default function Login() {
+export default function ChangePass() {
   const [isShowPass, setIsShowPass] = useState(false);
+  const [isShowConfirm, setIsShowConfirm] = useState(false);
   const { path } = useParams();
   const history = useHistory();
   const dispatch = useDispatch();
@@ -36,56 +37,32 @@ export default function Login() {
       if (dt.status === 200) {
         localStorage.setItem("token", dt?.data?.token.split(" ").slice(1));
         dispatch(actionSetLogin(true));
-        toast.success("Đăng nhập thành công");
+        toast.success("Login successfully");
         localStorage.setItem("name", dt.data.firstName);
         // history.replace("/" + path);
         history.replace("/");
       } else {
-        toast.error("Đăng nhập thất bại");
+        toast.error("Login fail");
       }
     } catch (error) {
-      toast.error("Đăng nhập thất bại");
+      toast.error("Login fail");
     }
   };
   return (
     <AuthLayout>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className='d-flex flex-row align-items-center justify-content-center justify-content-lg-start'>
-          <p className='lead fw-normal mb-0 me-3'>Đăng nhập với</p>
-          <button type='button' className='btn btn-primary btn-floating mx-1'>
-            <i className='fa fa-facebook-f'></i>
-          </button>
-
-          <button type='button' className='btn btn-primary btn-floating mx-1'>
-            <i className='fa fa-twitter'></i>
-          </button>
-
-          <button type='button' className='btn btn-primary btn-floating mx-1'>
-            <i className='fa fa-linkedin'></i>
-          </button>
+        <div className='d-flex flex-row align-items-center justify-content-center '>
+          <h4 className='lead fw-normal mb-3 me-3 fs-3'>Đặt lại mật khẩu</h4>
         </div>
 
-        <div className='divider d-flex align-items-center justify-content-center my-4'>
-          <p className='text-center fw-bold mx-3 mb-0'>Or</p>
-        </div>
-
-        <div className='form-outline mb-4'>
-          <input
-            type='text'
-            {...register("email")}
-            onMouseDown={handleMouseDown}
-            defaultValue={getValues("email")}
-            className={errors.email ? "form-control form-control-lg form__error" : "form-control form-control-lg"}
-            placeholder='Nhập địa chỉ email'
-          />
-          <p className='text__error'>{errors.email?.message}</p>
+        <div className='d-flex flex-row align-items-center justify-content-center '>
+          <h3 className='lead fw-normal mb-3 me-3'>Nhập mật khẩu mới để đổi lại </h3>
         </div>
 
         <div className='form-outline mb-3 '>
           <div className={"position-relative"}>
             <input
               type={isShowPass ? "text" : "password"}
-              id='form3Example5'
               {...register("password")}
               defaultValue={getValues("password")}
               onMouseDown={handleMouseDown}
@@ -111,28 +88,47 @@ export default function Login() {
           <p className='text__error'>{errors.password?.message}</p>
         </div>
 
-        <div className='d-flex justify-content-between align-items-center'>
-          <div className='form-check mb-0'>
-            <input className='form-check-input me-2' type='checkbox' value='' id='form2Example3' />
-            <label className='form-check-label' htmlFor='form2Example3'>
-              Ghi nhớ đăng nhập
-            </label>
+        <div className='form-outline mb-3 '>
+          <div className={"position-relative"}>
+            <input
+              type={isShowConfirm ? "text" : "password"}
+              {...register("confirm")}
+              defaultValue={getValues("confirm")}
+              onMouseDown={handleMouseDown}
+              className={errors.confirm ? "form-control form-control-lg form__error" : "form-control form-control-lg"}
+              placeholder='Nhập lại mật khẩu'
+            />
+            {isShowConfirm ? (
+              <i
+                className='fa fa-eye-slash pass__icon'
+                onClick={() => {
+                  setIsShowConfirm(false);
+                }}
+              />
+            ) : (
+              <i
+                className='fa fa-eye pass__icon'
+                onClick={() => {
+                  setIsShowConfirm(true);
+                }}
+              />
+            )}
           </div>
-          <span onClick={() => history.push("/forget-password")} className='text-body' style={{ cursor: "pointer" }}>
-            Quên mật khẩu?
-          </span>
+          <p className='text__error'>{errors.confirm?.message}</p>
         </div>
 
         <div className='text-center text-lg-start mt-4 pt-2'>
           <button type='submit' className='btn btn-primary btn-sm px-5'>
-            Đăng nhập
+            Xác nhận
           </button>
-          <p className='small fw-bold mt-2 pt-1 mb-0 fs-6'>
-            Bạn chưa có tài khoản?{" "}
-            <Link to='signup' className='link-danger'>
-              Đăng ký
-            </Link>
-          </p>
+          <button
+            className='btn btn-secondary btn-sm ms-3 px-5'
+            onClick={() => {
+              history.push("/login");
+            }}
+          >
+            Hủy bỏ
+          </button>
         </div>
       </form>
     </AuthLayout>

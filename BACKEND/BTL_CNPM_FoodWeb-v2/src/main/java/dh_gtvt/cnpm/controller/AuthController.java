@@ -61,7 +61,7 @@ public class AuthController {
 		return new ResponseEntity<String>("Tài khoản đã được xác thực!", HttpStatus.OK);
 	}
 	
-	@GetMapping("/resetPassWord")
+	@PostMapping("/resetPassWord")
 	public ResponseEntity<?> resetPassWord(@RequestParam(value = "email") String email){
 		if(!service.isUserExistsByEmail(email)) {
 			return new ResponseEntity<String>("Email chưa đăng ký!", HttpStatus.BAD_REQUEST);
