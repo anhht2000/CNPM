@@ -142,4 +142,10 @@ public class UserService implements IUserService {
 		emailService.sendRegistrationUserConfirm(email);
 
 	}
+
+	@Override
+	public void confirmResetPass(String token, String passWord) {
+		// TODO Auto-generated method stub
+		
+	}
 }

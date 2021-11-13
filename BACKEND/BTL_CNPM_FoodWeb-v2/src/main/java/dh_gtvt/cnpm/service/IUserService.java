@@ -20,6 +20,8 @@ public interface IUserService extends UserDetailsService{
 	public void createUser(UserFormForSignUp form);
 	
 	public void resetPassword(String email);
+	
+	public void confirmResetPass(String token, String passWord);
 
 	void activeUser(User user);
 
