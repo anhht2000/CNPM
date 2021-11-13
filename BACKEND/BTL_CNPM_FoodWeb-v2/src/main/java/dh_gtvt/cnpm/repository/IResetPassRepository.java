@@ -12,4 +12,6 @@ public interface IResetPassRepository extends JpaRepository<resetPassToken, Shor
 	boolean existsByUser(User user);
 	
 	resetPassToken findByUser(User user);
+	
+	resetPassToken findByToken(String token);
 }

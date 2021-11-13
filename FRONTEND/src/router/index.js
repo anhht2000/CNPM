@@ -51,14 +51,14 @@ const router = [
     component: ForgetPass,
     routes: [],
   },
-  {
-    path: "/change-password/:token",
-    // path: "/change-password",
-    name: "Change Pass Page",
-    exact: true,
-    component: ChangePass,
-    routes: [],
-  },
+  // {
+  //   path: "/change-password/:token",
+  //   // path: "/change-password",
+  //   name: "Change Pass Page",
+  //   exact: true,
+  //   component: ChangePass,
+  //   routes: [],
+  // },
   {
     path: "/add-to-cart",
     name: "Add To Cart Page",

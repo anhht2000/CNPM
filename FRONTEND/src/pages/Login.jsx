@@ -34,14 +34,13 @@ export default function Login() {
     try {
       const dt = await authApi.login(data);
       if (dt.status === 200) {
+        console.log(dt);
         localStorage.setItem("token", dt?.data?.token.split(" ").slice(1));
         dispatch(actionSetLogin(true));
         toast.success("Đăng nhập thành công");
         localStorage.setItem("name", dt.data.firstName);
         // history.replace("/" + path);
         history.replace("/");
-      } else {
-        toast.error("Đăng nhập thất bại");
       }
     } catch (error) {
       toast.error("Đăng nhập thất bại");

@@ -33,7 +33,7 @@ export default function ForgetPass() {
     try {
       const dt = await authApi.forget(data);
       if (dt.status === 200) {
-        localStorage.setItem("token", dt?.data);
+        localStorage.setItem("token_reset", dt?.data);
 
         toast.success("Vui lòng kiểm tra email để đổi lại mật khẩu");
       } else {

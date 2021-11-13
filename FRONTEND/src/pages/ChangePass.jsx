@@ -16,9 +16,14 @@ const schema = yup.object().shape({
 export default function ChangePass() {
   const [isShowPass, setIsShowPass] = useState(false);
   const [isShowConfirm, setIsShowConfirm] = useState(false);
-  const { path } = useParams();
+  const { token } = useParams();
   const history = useHistory();
   const dispatch = useDispatch();
+
+  if (token !== localStorage.getItem("token_reset")) {
+    history.push("/login");
+  }
+
   const {
     register,
     handleSubmit,
@@ -32,19 +37,16 @@ export default function ChangePass() {
     clearErrors(`${target.name}`);
   };
   const onSubmit = async (data) => {
+    const dt = await authApi.changePass(data, token);
     try {
-      const dt = await authApi.forget(data);
-      console.log({ data });
-      // if (dt.status === 200) {
-      //   localStorage.setItem("token_reset", dt?.data);
-      //   toast.success("Vui lòng kiểm tra email để đổi lại mật khẩu");
-      //   // history.replace("/" + path);
-      //   history.replace("/");
-      // } else {
-      //   toast.error("Login fail");
-      // }
+      if (dt.status === 200) {
+        toast.success("Đổi mật khẩu thành công!");
+        history.replace("/login");
+      } else {
+        toast.error("Đổi mật khẩu thất bại");
+      }
     } catch (error) {
-      toast.error("Login fail");
+      toast.error("Đổi mật khẩu thất bại");
     }
   };
   return (

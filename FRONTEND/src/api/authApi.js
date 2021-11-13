@@ -28,10 +28,10 @@ const authApi = {
 
     return axiosClient.post(url, data, { params: { email: data.email } });
   },
-  changePass: (data) => {
-    const url = "/bill/create";
+  changePass: (data, token) => {
+    const url = "/user/confirmResetPassWord";
 
-    return axiosClient.post(url, dt, { headers: { Authorization: `Bearer ${localStorage.getItem("token_reset")}` } });
+    return axiosClient.post(url, data, { headers: { resetPassowrdToken: token }, params: { password: data.password } });
   },
 };
 

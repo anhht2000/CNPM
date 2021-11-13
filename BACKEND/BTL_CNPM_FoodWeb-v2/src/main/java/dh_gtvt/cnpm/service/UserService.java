@@ -145,7 +145,11 @@ public class UserService implements IUserService {
 
 	@Override
 	public void confirmResetPass(String token, String passWord) {
-		// TODO Auto-generated method stub
+		resetPassToken resetToken = resetPassRepository.findByToken(token);
+		User user = resetToken.getUser();
+		user.setPassWord(passWord);
+		userRepository.save(user);
+		resetPassRepository.delete(resetToken);
 		
 	}
 }
