@@ -16,13 +16,15 @@ export default function About() {
               </h1>
               <h4>Câu chuyện về cửa hàng</h4>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque auctor suscipit feugiat. Ut at
-                pellentesque ante, sed convallis arcu. Nullam facilisis, eros in eleifend luctus, odio ante sodales
-                augue, eget lacinia lectus erat et sem.{" "}
+                Thức ăn nhanh (fast-food) được xem là thức ăn giúp tiết kiệm thời gian, loại thức ăn tiện lợi/ có thể ăn
+                ngay, thức ăn được chế biến sẵn hoặc không tốn nhiều nhiều thời gian để chế biến, thức ăn được phục vụ
+                nhanh, có thể ngồi tại chỗ ăn ngay hoặc mang đi và đáp ứng những nhu cầu ăn uống cơ bản nhất của con
+                người.
               </p>
               <p>
-                Sed semper orci sit amet porta placerat. Etiam quis finibus eros. Sed aliquam metus lorem, a
-                pellentesque tellus pretium a. Nulla placerat elit in justo vestibulum, et maximus sem pulvinar.
+                Chuỗi cửa hàng của chúng tôi ra đời nhằm chứng minh những gì nước ngoài làm được thì người Việt cũng
+                hoàn toàn có thể.Chúng tôi luôn đặt chất lượng và thái độ của khách hàng lên hàng đầu. Vì vậy bạn có thể
+                hoàn toàn tin tưởng vào chất lượng thực phẩm của chúng tôi.
               </p>
               <a className='btn btn-lg btn-circle btn-outline-new-white' href='#'>
                 Xem thêm
