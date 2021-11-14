@@ -12,6 +12,7 @@ export default function Header() {
   const isLogin = useSelector(checkLogin);
   const handleLogout = () => {
     dispatch(actionSetLogin(false));
+    history.push("/login");
   };
   useEffect(() => {
     const number = JSON.parse(localStorage.getItem("numberFood")) || 0;

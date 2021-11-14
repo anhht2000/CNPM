@@ -42,7 +42,7 @@ export default function Signup() {
     try {
       const dt = await authApi.signUp(data);
       if (dt.status === 201) {
-        toast.success("Đăng ký thành công");
+        toast.success("Đăng ký thành công. Vui lòng kiểm tra email để kích hoạt tài khoản");
         history.replace("/login");
       } else {
         toast.error("Đăng ký thất bại");
