@@ -60,7 +60,7 @@ export default function Header() {
               </li>
             </ul>
           </div>
-          <div className='icon__group d-flex align-items-center'>
+          <div className='icon__group d-lg-flex align-items-center d-none'>
             <Link to='/menu'>
               <i className='fa fa-search'></i>
             </Link>
@@ -97,7 +97,7 @@ export default function Header() {
                 </ul>
               </div>
             ) : (
-              <i className='fa fa-user'></i>
+              <i className='fa fa-user' onClick={() => history.push("/login")}></i>
             )}
           </div>
         </div>

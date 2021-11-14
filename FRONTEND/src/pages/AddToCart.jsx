@@ -40,7 +40,8 @@ export default function AddToCart() {
 
   const handleBuyFood = async () => {
     const data = JSON.parse(localStorage.getItem("cart")) || [];
-    const food = data.map((e) => ({ foodName: e.food.foodName, amount: Number(e.quantity) }));
+    const food = data.map((e) => ({ foodName: e.food.foodName, ammout: Number(e.quantity) }));
+    console.log(food);
     try {
       const dt = await foodApi.createBill(food);
       if (dt.status === 201) {
