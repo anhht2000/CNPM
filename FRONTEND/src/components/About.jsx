@@ -16,10 +16,10 @@ export default function About() {
               </h1>
               <h4>Câu chuyện về cửa hàng</h4>
               <p>
-                Thức ăn nhanh (fast-food) được xem là thức ăn giúp tiết kiệm thời gian, loại thức ăn tiện lợi/ có thể ăn
-                ngay, thức ăn được chế biến sẵn hoặc không tốn nhiều nhiều thời gian để chế biến, thức ăn được phục vụ
-                nhanh, có thể ngồi tại chỗ ăn ngay hoặc mang đi và đáp ứng những nhu cầu ăn uống cơ bản nhất của con
-                người.
+                Thức ăn nhanh hay còn gọi là fast-food được xem là thức ăn giúp tiết kiệm thời gian, loại thức ăn tiện
+                lợi có thể ăn ngay, thức ăn được chế biến sẵn hoặc không tốn nhiều nhiều thời gian để chế biến, thức ăn
+                được phục vụ nhanh, có thể ngồi tại chỗ ăn ngay hoặc mang đi và đáp ứng những nhu cầu ăn uống cơ bản
+                nhất của con người.
               </p>
               <p>
                 Chuỗi cửa hàng của chúng tôi ra đời nhằm chứng minh những gì nước ngoài làm được thì người Việt cũng

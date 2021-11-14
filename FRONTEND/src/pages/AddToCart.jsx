@@ -7,7 +7,7 @@ import foodApi from "../api/foodApi.js";
 import CartItem from "../components/CartItem.jsx";
 import CommonLayout from "../layouts/commonLayout.jsx";
 import { actionSetNumberCart } from "../redux/slice/food.js";
-import { checkLogin } from "../redux/slice/home.js";
+import { actionSetLogin, checkLogin } from "../redux/slice/home.js";
 
 export default function AddToCart() {
   const [listFood, setListFood] = useState([]);
@@ -41,7 +41,6 @@ export default function AddToCart() {
   const handleBuyFood = async () => {
     const data = JSON.parse(localStorage.getItem("cart")) || [];
     const food = data.map((e) => ({ foodName: e.food.foodName, ammout: Number(e.quantity) }));
-    console.log(food);
     try {
       const dt = await foodApi.createBill(food);
       if (dt.status === 201) {
@@ -51,6 +50,9 @@ export default function AddToCart() {
         dispatch(actionSetNumberCart(0));
         history.push("/add-to-cart-success");
       } else {
+        dispatch(actionSetLogin(false));
+        localStorage.removeItem("token");
+        history.push("/login");
         toast.error("Lỗi hệ thống. Không đặt được hàng");
       }
     } catch (error) {
