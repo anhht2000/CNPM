@@ -30,7 +30,7 @@ public class EmailService implements IEmailService {
 		User user = userRepository.findByEmail(email);
 		String token = resetPassRepository.findByUser(user).getToken();
 
-		String resetUrl = "http://localhost:8083/resetPassword/" + token;
+		String resetUrl = "http://localhost:8083/change-password/" + token;
 
 		String subject = "Xác nhận thay đổi mật khẩu";
 		String content = "Click vào link dưới để thay đổi mật khẩu \n" + resetUrl;

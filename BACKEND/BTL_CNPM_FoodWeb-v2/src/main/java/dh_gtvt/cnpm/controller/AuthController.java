@@ -23,76 +23,78 @@ import dh_gtvt.cnpm.form.UserFormForSignUp;
 import dh_gtvt.cnpm.service.IActiveTokenService;
 import dh_gtvt.cnpm.service.IResetPassTokenService;
 import dh_gtvt.cnpm.service.IUserService;
-import dh_gtvt.cnpm.service.UserService;
 
 @RestController
 @RequestMapping(value = "api/v1/user")
 @CrossOrigin("*")
 public class AuthController {
 
-	@Autowired
-	private IUserService service;
-	
-	@Autowired
-	private IActiveTokenService activeTokenService;
-	
-	@Autowired
-	private IResetPassTokenService resetTokenService;
-	
-	private PasswordEncoder encoder;
-	
-	@PostMapping("/signup")
-	public ResponseEntity<?> signup(@RequestBody UserFormForSignUp form) {
-		if(service.isUserExistsByEmail(form.getEmail())) {
-			return new ResponseEntity<String>("Email đã được đăng ký bởi 1 tài khoản khác!",HttpStatus.BAD_REQUEST);
-		}
-		
-		if(service.isUserExistsByPhone(form.getPhone())) {
-			return new ResponseEntity<String>("Số điện thoại đã được đăng ký bởi 1 tài khoản khác!",HttpStatus.BAD_REQUEST);
-		}
-		
-		encoder = new BCryptPasswordEncoder();
-		form.setPassWord(encoder.encode(form.getPassWord()));
-		
-		service.createUser(form);
-		return new ResponseEntity<String>("Kiểm tra email để xác thực!", HttpStatus.CREATED);
-	}
-	
-	@GetMapping("/activeUser")
-	public ResponseEntity<?> activeUser(@RequestParam(value = "token") String token){
-		User user = activeTokenService.getUserByActiveToken(token);
-		//check expired date
-		if(user.getActiveToken().getExpiredDate().compareTo(new Date(System.currentTimeMillis()))<0) {
-			return new ResponseEntity<String>("Link đã hết hạn!", HttpStatus.BAD_REQUEST);
-		}
-		service.activeUser(user);
-		return new ResponseEntity<String>("Tài khoản đã được xác thực!", HttpStatus.OK);
-	}
-	
-	@GetMapping("/resetPassWord")
-	public ResponseEntity<?> resetPassWord(@RequestParam(value = "email") String email){
-		if(!service.isUserExistsByEmail(email)) {
-			return new ResponseEntity<String>("Email chưa đăng ký!", HttpStatus.BAD_REQUEST);
-		}
-		
-		User user = service.getUserByEmail(email);
-		
-		//check expired date
-//		User  user = service.getUserByEmail(email);
-//		if(user.getResetPassToken().getExpiredDate().compareTo(new Date(System.currentTimeMillis()))<0) {
-//			return new ResponseEntity<String>("Link đã hết hạn!", HttpStatus.BAD_REQUEST);
-//		}
-		service.resetPassword(email);
-		resetPassToken token = resetTokenService.getResetTokenByUser(user);
-		return new ResponseEntity<String>(token.getToken()  , HttpStatus.OK);
-	}
-	
-	@PutMapping("/confirmResetPassWord")
-	public ResponseEntity<?> confirmResetPassWord(@RequestHeader("resetPassowrdToken") String token,@RequestParam String password){
-		//service.resetPassword(email);
-		encoder = new BCryptPasswordEncoder();
-		String passwordencrypt = encoder.encode(password);
-		service.confirmResetPass(token, passwordencrypt);
-		return new ResponseEntity<String>("Doi mat khau thanh cong!", HttpStatus.OK);
-	}
+  @Autowired
+  private IUserService service;
+
+  @Autowired
+  private IActiveTokenService activeTokenService;
+
+  @Autowired
+  private IResetPassTokenService resetTokenService;
+
+  private PasswordEncoder encoder;
+
+  @PostMapping("/signup")
+  public ResponseEntity<?> signup(@RequestBody UserFormForSignUp form) {
+    if (service.isUserExistsByEmail(form.getEmail())) {
+      return new ResponseEntity<String>("Email đã được đăng ký bởi 1 tài khoản khác!", HttpStatus.BAD_REQUEST);
+    }
+
+    if (service.isUserExistsByPhone(form.getPhone())) {
+      return new ResponseEntity<String>("Số điện thoại đã được đăng ký bởi 1 tài khoản khác!", HttpStatus.BAD_REQUEST);
+    }
+
+    encoder = new BCryptPasswordEncoder();
+    form.setPassWord(encoder.encode(form.getPassWord()));
+
+    service.createUser(form);
+    return new ResponseEntity<String>("Kiểm tra email để xác thực!", HttpStatus.CREATED);
+  }
+
+  @GetMapping("/activeUser")
+  public ResponseEntity<?> activeUser(@RequestParam(value = "token") String token) {
+    User user = activeTokenService.getUserByActiveToken(token);
+    // check expired date
+    if (user.getActiveToken().getExpiredDate().compareTo(new Date(System.currentTimeMillis())) < 0) {
+      return new ResponseEntity<String>("Link đã hết hạn!", HttpStatus.BAD_REQUEST);
+    }
+    service.activeUser(user);
+    return new ResponseEntity<String>("Tài khoản đã được xác thực!", HttpStatus.OK);
+  }
+
+  @PostMapping("/resetPassWord")
+  public ResponseEntity<?> resetPassWord(@RequestParam(value = "email") String email) {
+    if (!service.isUserExistsByEmail(email)) {
+      return new ResponseEntity<String>("Email chưa đăng ký!", HttpStatus.BAD_REQUEST);
+    }
+
+    User user = service.getUserByEmail(email);
+
+    // check expired date
+    // User user = service.getUserByEmail(email);
+    // if(user.getResetPassToken().getExpiredDate().compareTo(new
+    // Date(System.currentTimeMillis()))<0) {
+    // return new ResponseEntity<String>("Link đã hết hạn!",
+    // HttpStatus.BAD_REQUEST);
+    // }
+    service.resetPassword(email);
+    resetPassToken token = resetTokenService.getResetTokenByUser(user);
+    return new ResponseEntity<String>(token.getToken(), HttpStatus.OK);
+  }
+
+  @PostMapping("/confirmResetPassWord")
+  public ResponseEntity<?> confirmResetPassWord(@RequestHeader("resetPassowrdToken") String token,
+      @RequestParam String password) {
+    // service.resetPassword(email);
+    encoder = new BCryptPasswordEncoder();
+    String passwordencrypt = encoder.encode(password);
+    service.confirmResetPass(token, passwordencrypt);
+    return new ResponseEntity<String>("Doi mat khau thanh cong!", HttpStatus.OK);
+  }
 }

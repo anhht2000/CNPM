@@ -21,6 +21,18 @@ const authApi = {
 
     return axiosClient.post(url, JSON.stringify(dt));
   },
+  forget: (data) => {
+    const url = "/user/resetPassWord";
+    // const dt = new FormData();
+    // dt.append("email", data.email);
+
+    return axiosClient.post(url, data, { params: { email: data.email } });
+  },
+  changePass: (data, token) => {
+    const url = "/user/confirmResetPassWord";
+
+    return axiosClient.post(url, data, { headers: { resetPassowrdToken: token }, params: { password: data.password } });
+  },
 };
 
 export default authApi;

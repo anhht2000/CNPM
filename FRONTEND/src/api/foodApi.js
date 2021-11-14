@@ -24,5 +24,10 @@ const foodApi = {
 
     return axiosClient.post(url, dt, { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } });
   },
+  getBill: () => {
+    const url = "/bill";
+
+    return axiosClient.get(url, { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } });
+  },
 };
 export default foodApi;

@@ -1,7 +1,8 @@
 import { all, call, takeLatest, put } from "@redux-saga/core/effects";
 import homeApi from "../../api/homeApi";
-import { actionGetTop, actionGetTopSuccess } from "../slice/home";
+import { actionGetReceipt, actionGetReceiptSuccess, actionGetTop, actionGetTopSuccess } from "../slice/home";
 import { toast } from "react-toastify";
+import foodApi from "../../api/foodApi";
 
 function* handleGetAll() {
   try {
@@ -19,6 +20,17 @@ function* handleGetAll() {
   }
 }
 
+function* handleGetReceipt() {
+  try {
+    const { data } = yield call(foodApi.getBill);
+
+    yield put(actionGetReceiptSuccess(data.content));
+  } catch (error) {
+    toast.error("Hệ thống có lỗi");
+  }
+}
+
 export default function* homeSaga() {
   yield takeLatest(actionGetTop.type, handleGetAll);
+  yield takeLatest(actionGetReceipt.type, handleGetReceipt);
 }

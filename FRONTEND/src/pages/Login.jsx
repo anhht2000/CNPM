@@ -10,8 +10,8 @@ import { useDispatch } from "react-redux";
 import { actionSetLogin } from "../redux/slice/home.js";
 
 const schema = yup.object().shape({
-  email: yup.string().email("Please typing have type is email").required("Please typing your email"),
-  password: yup.string().min(5, "Please typing min is 5 character").required("Please typing your password"),
+  email: yup.string().email("Hãy nhập định dạng email").required("Bạn phải nhập email"),
+  password: yup.string().min(5, "Bạn phải nhập mật khẩu").required("Bạn phải nhập mật khẩu"),
 });
 export default function Login() {
   const [isShowPass, setIsShowPass] = useState(false);
@@ -34,22 +34,23 @@ export default function Login() {
     try {
       const dt = await authApi.login(data);
       if (dt.status === 200) {
+        console.log(dt);
         localStorage.setItem("token", dt?.data?.token.split(" ").slice(1));
         dispatch(actionSetLogin(true));
-        toast.success("Login successfully");
-        history.replace("/" + path);
-      } else {
-        toast.error("Login fail");
+        toast.success("Đăng nhập thành công");
+        localStorage.setItem("name", dt.data.firstName);
+        // history.replace("/" + path);
+        history.replace("/");
       }
     } catch (error) {
-      toast.error("Login fail");
+      toast.error("Đăng nhập thất bại");
     }
   };
   return (
     <AuthLayout>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className='d-flex flex-row align-items-center justify-content-center justify-content-lg-start'>
-          <p className='lead fw-normal mb-0 me-3'>Sign in with</p>
+          <p className='lead fw-normal mb-0 me-3'>Đăng nhập với</p>
           <button type='button' className='btn btn-primary btn-floating mx-1'>
             <i className='fa fa-facebook-f'></i>
           </button>
@@ -74,7 +75,7 @@ export default function Login() {
             onMouseDown={handleMouseDown}
             defaultValue={getValues("email")}
             className={errors.email ? "form-control form-control-lg form__error" : "form-control form-control-lg"}
-            placeholder='Enter a valid email address'
+            placeholder='Nhập địa chỉ email'
           />
           <p className='text__error'>{errors.email?.message}</p>
         </div>
@@ -88,7 +89,7 @@ export default function Login() {
               defaultValue={getValues("password")}
               onMouseDown={handleMouseDown}
               className={errors.password ? "form-control form-control-lg form__error" : "form-control form-control-lg"}
-              placeholder='Enter password'
+              placeholder='Nhập mật khẩu'
             />
             {isShowPass ? (
               <i
@@ -113,22 +114,22 @@ export default function Login() {
           <div className='form-check mb-0'>
             <input className='form-check-input me-2' type='checkbox' value='' id='form2Example3' />
             <label className='form-check-label' htmlFor='form2Example3'>
-              Remember me
+              Ghi nhớ đăng nhập
             </label>
           </div>
-          <a href='#!' className='text-body'>
-            Forgot password?
-          </a>
+          <span onClick={() => history.push("/forget-password")} className='text-body' style={{ cursor: "pointer" }}>
+            Quên mật khẩu?
+          </span>
         </div>
 
         <div className='text-center text-lg-start mt-4 pt-2'>
-          <button type='submit' className='btn btn-primary btn-lg px-5'>
-            Login
+          <button type='submit' className='btn btn-primary btn-sm px-5'>
+            Đăng nhập
           </button>
           <p className='small fw-bold mt-2 pt-1 mb-0 fs-6'>
-            Don't have an account?{" "}
+            Bạn chưa có tài khoản?{" "}
             <Link to='signup' className='link-danger'>
-              Register
+              Đăng ký
             </Link>
           </p>
         </div>

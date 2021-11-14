@@ -1,12 +1,19 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useHistory } from "react-router-dom";
 import { logoImg } from "../asset";
 import { actionSetNumberCart, getNumberCart } from "../redux/slice/food";
+import { actionSetLogin, checkLogin } from "../redux/slice/home";
 
 export default function Header() {
   const numberCart = useSelector(getNumberCart);
   const dispatch = useDispatch();
+  const history = useHistory();
+  const isLogin = useSelector(checkLogin);
+  const handleLogout = () => {
+    dispatch(actionSetLogin(false));
+    history.push("/login");
+  };
   useEffect(() => {
     const number = JSON.parse(localStorage.getItem("numberFood")) || 0;
     dispatch(actionSetNumberCart(number));
@@ -53,7 +60,7 @@ export default function Header() {
               </li>
             </ul>
           </div>
-          <div className='icon__group'>
+          <div className='icon__group d-flex align-items-center'>
             <Link to='/menu'>
               <i className='fa fa-search'></i>
             </Link>
@@ -63,7 +70,35 @@ export default function Header() {
                 {numberCart !== 0 && <span>{numberCart}</span>}
               </div>
             </Link>
-            <i className='fa fa-user'></i>
+            {isLogin ? (
+              <div className='login'>
+                <div className='d-flex align-items-center cursor-pointer ms-3'>
+                  <img
+                    src='https://i.picsum.photos/id/166/200/300.webp?hmac=oQFdz1K0cxOrp0xV0q2_qKTY5JqF-JMzC5pCtUs2He8'
+                    alt=''
+                    className='avt'
+                  />
+                  <p style={{ color: "#210101", paddingLeft: "5px", marginBottom: "0" }}>
+                    {localStorage.getItem("name")}
+                  </p>
+                </div>
+                <ul className='sub__avt'>
+                  <li
+                    className='sub__avt-item'
+                    onClick={() => {
+                      history.push("/history-receipt");
+                    }}
+                  >
+                    Đơn hàng đã mua
+                  </li>
+                  <li className='sub__avt-item' onClick={handleLogout}>
+                    Đăng xuất
+                  </li>
+                </ul>
+              </div>
+            ) : (
+              <i className='fa fa-user'></i>
+            )}
           </div>
         </div>
       </nav>
