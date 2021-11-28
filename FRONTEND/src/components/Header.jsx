@@ -23,9 +23,9 @@ export default function Header() {
     <header className='top-navbar'>
       <nav className='navbar navbar-expand-lg navbar-light bg-light'>
         <div className='container'>
-          <a className='navbar-brand' href='index.html'>
+          <Link to='/' className='navbar-brand'>
             <img src={logoImg.logo} alt='' />
-          </a>
+          </Link>
           <button
             className='navbar-toggler'
             type='button'
