@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `activeToken`(
 INSERT INTO `User`
 (`Email`					,`PhoneNumber`	,`FirstName`	,`LastName`		,`PassWord`		,`Gender`	,`Status`		,`Address`					)
 VALUES
-('JohnnyDang@gmail.com'		,'0956320111'	,'Johnny' 		,'Tuấn Đặng'	,'$2a$10$W2neF9.6Agi6kAKVq8q3fec5dHW8KUA.b0VSIGdIZyUravfLpyIFi'	,'Male'		,'Active'	,'20A ngõ 445 Nguyễn Khang, Yên Hòa, Cầu Giấy, Hà nội'),
+(''		,'0956320111'	,'Johnny' 		,'Tuấn Đặng'	,'$2a$10$W2neF9.6Agi6kAKVq8q3fec5dHW8KUA.b0VSIGdIZyUravfLpyIFi'	,'Male'		,'Active'	,'20A ngõ 445 Nguyễn Khang, Yên Hòa, Cầu Giấy, Hà nội'),
 ('TommyTeo@gmail.com'		,'0987654321'	,'Tommy'		, 'Quang Tèo'	,'$2a$10$W2neF9.6Agi6kAKVq8q3fec5dHW8KUA.b0VSIGdIZyUravfLpyIFi'	,'Male'		,'Active'	,'20A ngõ 445 Nguyễn Khang, Yên Hòa, Cầu Giấy, Hà nội'),
 ('AnNguyen@gmail.com'		,'0967299999'	,'Nguyễn Văn'	, 'An'			,'$2a$10$W2neF9.6Agi6kAKVq8q3fec5dHW8KUA.b0VSIGdIZyUravfLpyIFi'	,'Male'		,'Active'	,'20A ngõ 445 Nguyễn Khang, Yên Hòa, Cầu Giấy, Hà nội'),
 ('AnhTuanTran@gmail.com'	,'0956320333'	,'Trần Tuấn'	, 'Anh'			,'$2a$10$W2neF9.6Agi6kAKVq8q3fec5dHW8KUA.b0VSIGdIZyUravfLpyIFi'	,'Male'		,'Active'	,'20A ngõ 445 Nguyễn Khang, Yên Hòa, Cầu Giấy, Hà nội'),
@@ -142,15 +142,15 @@ VALUES
 (1				,'Ba Rọi Heo Kho Nước Dừa'		,100000		,'https://image.cooky.vn/posproduct/g0/13583/s400x400/d55d7f70-ae2d-4a49-ae6f-dce4f39ce769.jpeg'					,10			 ,'bestseller'),
 (1				,'Ba Rọi Heo Rim Chao'			,120000		,'https://image.cooky.vn/posproduct/g0/11919/s400x400/83002841-adb9-4233-876c-92ae1b2be4c0.jpeg'					,10			 ,'bestseller'),
 (1				,'Ba Rọi Heo Kho Măng'			,140000		,'https://image.cooky.vn/posproduct/g0/12953/s400x400/ca8516dc-ea80-416a-9bc6-c3a5fa5a7136.jpeg'					,10			 ,'bestseller'),
-(2				,'Bắp Bò Sốt Me'			,160000		,'https://image.cooky.vn/posproduct/g0/411/s400x400/148df84f-7497-4b7b-85ad-e7e4c65e11c6.jpeg'					,10			 ,'bestseller'),
-(2				,'Thăn Bò Xào Lá Lốt'			,175000		,'https://image.cooky.vn/posproduct/g0/13753/s400x400/e8d27bbc-a64a-4a0a-b95f-2763ccb52179.jpeg'					,10			 ,'bestseller'),
-(2				,'Thăn Bò Xào Cải Ngọt'			,190000		,'https://image.cooky.vn/posproduct/g0/5837/s400x400/7eb6d980-4630-4ff8-923b-336617ad45b7.jpeg'					,10			,'bestseller' ),
-(2				,'Thăn Bò Xào Dọc Mùng'			,165000		,'https://image.cooky.vn/posproduct/g0/6966/s400x400/094d027d-21c6-4a50-b232-49cea4404279.jpeg'					,10			 ,'bestseller'),
-(2				,'Thăn Bò Xào Nấm Thập Cẩm'		,155000		,'https://image.cooky.vn/posproduct/g0/13718/s400x400/c1b33fbd-a39d-4993-9d56-965136ff73ad.jpeg'					,10			 ,'bestseller'),
-(2				,'Thăn Bò Xào Bông Cải Xanh'		,130000		,'https://image.cooky.vn/posproduct/g0/6982/s400x400/f2c4648e-a8fc-431f-9f5e-46bdd2fd1f5b.jpeg'					,10			 ,'bestseller'),
-(2				,'Thăn Bò Xào Sa Tế 	'		,110000		,'https://image.cooky.vn/posproduct/g0/10284/s400x400/45790592-445b-4698-8a38-3dd9848e2521.jpeg'					,10			 ,'bestseller'),
-(2				,'Bò Hầm Tiêu Xanh'			,98000		,'https://image.cooky.vn/posproduct/g0/33/s400x400/900ab1ce-4672-46cf-b9ed-a71cd6d1479d.jpeg'					,10			 ,'bestseller'),
-(2				,'Bò Cuộn Phô Mai Đút Lò'		,200000		,'https://image.cooky.vn/posproduct/g0/13654/s400x400/bd84dfa9-776c-4a40-93c3-39fa61b20728.jpeg'					,10			 ,'bestseller'),
+(4				,'Bắp Bò Sốt Me'			,160000		,'https://image.cooky.vn/posproduct/g0/411/s400x400/148df84f-7497-4b7b-85ad-e7e4c65e11c6.jpeg'					,10			 ,'bestseller'),
+(4				,'Thăn Bò Xào Lá Lốt'			,175000		,'https://image.cooky.vn/posproduct/g0/13753/s400x400/e8d27bbc-a64a-4a0a-b95f-2763ccb52179.jpeg'					,10			 ,'bestseller'),
+(4				,'Thăn Bò Xào Cải Ngọt'			,190000		,'https://image.cooky.vn/posproduct/g0/5837/s400x400/7eb6d980-4630-4ff8-923b-336617ad45b7.jpeg'					,10			,'bestseller' ),
+(4				,'Thăn Bò Xào Dọc Mùng'			,165000		,'https://image.cooky.vn/posproduct/g0/6966/s400x400/094d027d-21c6-4a50-b232-49cea4404279.jpeg'					,10			 ,'bestseller'),
+(4				,'Thăn Bò Xào Nấm Thập Cẩm'		,155000		,'https://image.cooky.vn/posproduct/g0/13718/s400x400/c1b33fbd-a39d-4993-9d56-965136ff73ad.jpeg'					,10			 ,'bestseller'),
+(4				,'Thăn Bò Xào Bông Cải Xanh'		,130000		,'https://image.cooky.vn/posproduct/g0/6982/s400x400/f2c4648e-a8fc-431f-9f5e-46bdd2fd1f5b.jpeg'					,10			 ,'bestseller'),
+(4				,'Thăn Bò Xào Sa Tế 	'		,110000		,'https://image.cooky.vn/posproduct/g0/10284/s400x400/45790592-445b-4698-8a38-3dd9848e2521.jpeg'					,10			 ,'bestseller'),
+(4				,'Bò Hầm Tiêu Xanh'			,98000		,'https://image.cooky.vn/posproduct/g0/33/s400x400/900ab1ce-4672-46cf-b9ed-a71cd6d1479d.jpeg'					,10			 ,'bestseller'),
+(4				,'Bò Cuộn Phô Mai Đút Lò'		,200000		,'https://image.cooky.vn/posproduct/g0/13654/s400x400/bd84dfa9-776c-4a40-93c3-39fa61b20728.jpeg'					,10			 ,'bestseller'),
 (1				,'Ba Rọi Heo Kho Mắm Ruốc'		,150000		,'https://image.cooky.vn/posproduct/g0/10180/s400x400/58c6f42f-6b5d-4d94-81cb-7f8d60cd63fc.jpeg'					,10			 ,'bestseller');
 -- Test data inserted
 
@@ -159,5 +159,17 @@ SELECT * FROM `FoodCategory`;
 SELECT * FROM `Food`;
 SELECT * FROM `resetPassToken`;
 SELECT * FROM `ActiveToken`;
+SELECT * FROM `Bill`;
+SELECT * FROM `BillDetail`;
 
-DELETE FROM `User` WHERE `FirstName` = 'Son';
+-- INSERT INTO `Bill`(`UserID`)
+-- VALUES
+-- (2);
+
+-- INSERT INTO `BillDetail`(`BillID`,`FoodID`,`Ammount`)
+-- VALUES
+-- (13,2,2);
+
+-- DELETE FROM `User` WHERE `FirstName` = 'Son';
+-- DELETE FROM `Bill` WHERE `UserID` = 2;
+-- DELETE FROM `BillDetail` WHERE `BillID`=10;
