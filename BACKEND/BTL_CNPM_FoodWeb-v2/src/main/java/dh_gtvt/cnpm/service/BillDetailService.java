@@ -17,20 +17,22 @@ import dh_gtvt.cnpm.repository.IFoodRepository;
 @Transactional
 public class BillDetailService implements IBillDetailService {
 
-	@Autowired
-	private IFoodRepository foodRepository;
+  @Autowired
+  private IFoodRepository foodRepository;
 
-	@Autowired
-	private IBillDetailRepository billDetailRepository;
+  @Autowired
+  private IBillDetailRepository billDetailRepository;
 
-	@Override
-	public void createBillDetail(Bill bill, BillDetailFormForCreating form) {
-		BillDetail billDetail = new BillDetail(new BillDetailPK(bill.getId(),foodRepository.findByFoodName(form.getFoodName()).getFoodId()),form.getAmmout());
-		Food food = foodRepository.findByFoodName(form.getFoodName());
-		int ammout = food.getFoodAmount();
-		food.setFoodAmount(ammout - form.getAmmout());
-		foodRepository.save(food);
-		billDetailRepository.save(billDetail);
-	}
+  @Override
+  public void createBillDetail(Bill bill, BillDetailFormForCreating form) {
+    BillDetail billDetail = new BillDetail(
+        new BillDetailPK(bill.getId(), foodRepository.findByFoodName(form.getFoodName()).getFoodId()),
+        form.getAmmout());
+    Food food = foodRepository.findByFoodName(form.getFoodName());
+    int ammout = food.getFoodAmount();
+    food.setFoodAmount(ammout - form.getAmmout());
+    foodRepository.save(food);
+    billDetailRepository.save(billDetail);
+  }
 
 }
