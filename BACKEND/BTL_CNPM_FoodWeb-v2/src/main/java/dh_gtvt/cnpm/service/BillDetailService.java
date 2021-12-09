@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import dh_gtvt.cnpm.entity.Bill;
 import dh_gtvt.cnpm.entity.BillDetail;
 import dh_gtvt.cnpm.entity.BillDetailPK;
+import dh_gtvt.cnpm.entity.Food;
 import dh_gtvt.cnpm.form.BillDetailFormForCreating;
 import dh_gtvt.cnpm.repository.IBillDetailRepository;
 import dh_gtvt.cnpm.repository.IFoodRepository;
@@ -25,8 +26,10 @@ public class BillDetailService implements IBillDetailService {
 	@Override
 	public void createBillDetail(Bill bill, BillDetailFormForCreating form) {
 		BillDetail billDetail = new BillDetail(new BillDetailPK(bill.getId(),foodRepository.findByFoodName(form.getFoodName()).getFoodId()),form.getAmmout());
-//		billDetail.setBill(bill);
-//		billDetail.setFood(foodRepository.findById(form.getFoodID()).get());
+		Food food = foodRepository.findByFoodName(form.getFoodName());
+		int ammout = food.getFoodAmount();
+		food.setFoodAmount(ammout - form.getAmmout());
+		foodRepository.save(food);
 		billDetailRepository.save(billDetail);
 	}
 
